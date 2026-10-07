@@ -6,11 +6,11 @@ Captured 2026-10-07 against a live local OpenPoke instance (model `anthropic/cla
 
 User said "Python", then "Actually… Rust", then asked which one is their favorite. OpenPoke answered **Rust**.
 
-| Layer | "Python" (old fact) | "Rust" (new fact) | Superseded? |
-|---|---|---|---|
-| Conversation log | Present | Present | No |
-| Working memory | Present | Present | No |
-| Final LLM context | Present | Present | No |
+| Layer | "Python" (old fact) | "Rust" (new fact) | Superseded? | Evidence |
+|---|---|---|---|---|
+| Conversation log | Present | Present | No | `poke_conversation.log` L1 "…is Python." · L3 "Actually, …is Rust." |
+| Working memory | Present | Present | No | `poke_working_memory.log` L3 / L5 (verbatim copy; summary empty, `last_index: -1`) |
+| Final LLM context | Present | Present | No | `runtime.py:194-199` loads working memory → `agent.py:37-41` wraps it in `<conversation_history>` containing both lines |
 
 **Takeaway:** The model selected the newer fact, but the memory system did not structurally supersede the old one.
 
