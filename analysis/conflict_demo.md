@@ -2,6 +2,20 @@
 
 Captured 2026-10-07 against a live local OpenPoke instance (model `anthropic/claude-sonnet-4` via OpenRouter). No production code was changed and no runtime data was modified.
 
+## Slide summary
+
+User said "Python", then "Actually… Rust", then asked which one is their favorite. OpenPoke answered **Rust**.
+
+| Layer | "Python" (old fact) | "Rust" (new fact) | Superseded? |
+|---|---|---|---|
+| Conversation log | Present | Present | No |
+| Working memory | Present | Present | No |
+| Final LLM context | Present | Present | No |
+
+**Takeaway:** The model selected the newer fact, but the memory system did not structurally supersede the old one.
+
+**Citation:** Baseline evidence: `analysis/conflict_demo.md`, OpenPoke baseline, commit `93ea674` (2026-10-07). https://github.com/suneruperera0/openpoke-memory/blob/93ea674/analysis/conflict_demo.md
+
 ## User sequence
 
 | Turn | Time (America/Toronto) | User message | OpenPoke reply (abridged) |
