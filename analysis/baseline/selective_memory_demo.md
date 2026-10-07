@@ -15,7 +15,7 @@ Line references: conversation log `server/data/conversation/poke_conversation.lo
 
 **Write path:** `log.py:136-138` `record_user_message()` appends the raw text to both files, with no filtering step (`log.py:68-81`, `working_memory_log.py:83`).
 
-**Citation:** Baseline evidence: `analysis/selective_memory_demo.md`, OpenPoke baseline (2026-10-07).
+**Citation:** Baseline evidence: `analysis/baseline/selective_memory_demo.md`, OpenPoke baseline (2026-10-07).
 
 ## User sequence
 

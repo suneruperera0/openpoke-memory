@@ -6,8 +6,8 @@ Revision 2 adds: the ingress-persistence scrub (§4.1), clause-level IGNORE repo
 
 This is the "how and why, in detail" companion to [LTM_SYSTEM_DESIGN.md](LTM_SYSTEM_DESIGN.md) (architecture) and
 [LTM_DECISIONS.md](LTM_DECISIONS.md) (ADR). Everything here is **PROPOSED** unless marked **VERIFIED** with a file:line or test
-reference into the current code or the baseline analysis ([ARCHITECTURE.md](ARCHITECTURE.md), [TEST_RESULTS.md](TEST_RESULTS.md),
-[conflict_demo.md](conflict_demo.md)).
+reference into the current code or the baseline analysis ([ARCHITECTURE.md](../baseline/ARCHITECTURE.md), [TEST_RESULTS.md](../baseline/TEST_RESULTS.md),
+[conflict_demo.md](../baseline/conflict_demo.md)).
 
 Pseudocode is Python-flavoured and intentionally close to what the implementation should look like. Constants are the recommended
 initial values. Each comes with a justification, and all of them should be re-tuned on the eval set (§24).

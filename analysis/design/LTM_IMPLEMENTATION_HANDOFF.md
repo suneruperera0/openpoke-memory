@@ -11,14 +11,14 @@
 
 | Document | Role | sha256 at freeze |
 |---|---|---|
-| [LTM_SYSTEM_DESIGN.md](LTM_SYSTEM_DESIGN.md) | Architecture, gates (§19.1), proofs table (§24), data contract (§25), file list (§26) | `3ae981b03bad0efbed0701e21459fc1d2e5b808e9b0f7598ce3cad750e7acade` |
+| [LTM_SYSTEM_DESIGN.md](LTM_SYSTEM_DESIGN.md) | Architecture, gates (§19.1), proofs table (§24), data contract (§25), file list (§26) | `e60c47262464a4048d8968adabeb9ca6c3e5f241bca0d773e8e98e136d2a76c7` |
 | [LTM_DECISIONS.md](LTM_DECISIONS.md) | Decisions D1–D28 | `ae5d955da2e5aeb70a26f9e8a79497ee9b349939821de3f6259a55321c2e8655` |
-| [LTM_ENGINEERING_DEEP_DIVE.md](LTM_ENGINEERING_DEEP_DIVE.md) | Algorithms, constants, DDL, pseudocode, harness (§29) | `980ba87ac1fc85c6ad72dafea39b0e77907fe6d9c3cf7e60876364a86fd7c24f` |
+| [LTM_ENGINEERING_DEEP_DIVE.md](LTM_ENGINEERING_DEEP_DIVE.md) | Algorithms, constants, DDL, pseudocode, harness (§29) | `134698b7578a656685123a30790394918c2d2697c0a0dafff5b28b3be4b003cc` |
 
 Verify before starting:
 
 ```bash
-cd analysis && shasum -a 256 LTM_SYSTEM_DESIGN.md LTM_DECISIONS.md LTM_ENGINEERING_DEEP_DIVE.md
+cd analysis/design && shasum -a 256 LTM_SYSTEM_DESIGN.md LTM_DECISIONS.md LTM_ENGINEERING_DEEP_DIVE.md
 ```
 
 **Precedence when documents disagree:**
@@ -30,8 +30,8 @@ cd analysis && shasum -a 256 LTM_SYSTEM_DESIGN.md LTM_DECISIONS.md LTM_ENGINEERI
 Constants (thresholds, weights, TTLs, k, token budget) are taken **verbatim** from the deep dive. Do not tune them to make a test pass.
 If a gate can't pass with the spec constants, that's a blocker (§2).
 
-Background evidence, not spec: [ARCHITECTURE.md](ARCHITECTURE.md), [FINDINGS.md](FINDINGS.md), [TEST_RESULTS.md](TEST_RESULTS.md),
-[conflict_demo.md](conflict_demo.md).
+Background evidence, not spec: [ARCHITECTURE.md](../baseline/ARCHITECTURE.md), [FINDINGS.md](../baseline/FINDINGS.md), [TEST_RESULTS.md](../baseline/TEST_RESULTS.md),
+[conflict_demo.md](../baseline/conflict_demo.md).
 
 ---
 
@@ -59,7 +59,7 @@ Background evidence, not spec: [ARCHITECTURE.md](ARCHITECTURE.md), [FINDINGS.md]
 **Blocker protocol** (when implementation reveals the spec can't be built as written):
 
 1. Stop the affected step. Don't work around it silently.
-2. Append an entry to `analysis/LTM_BLOCKERS.md`: id, step, observed problem (with file:line or test output), the minimal deviation
+2. Append an entry to `analysis/design/LTM_BLOCKERS.md`: id, step, observed problem (with file:line or test output), the minimal deviation
    proposed, the gates affected, and why no smaller change works.
 3. Apply only that minimal deviation, keeping it behind the same flags, and continue.
 4. List every blocker in the final report (§10).
@@ -102,7 +102,7 @@ analysis/lab/ltm_demo/
   scenarios.py       the 4 proofs (+ poisoning bonus): steps, values, canaries, assertion functions
   contract.py        validate_trace(doc): stdlib structural validator for openpoke.ltm.demo_trace.v1
   run_demo.py        harness (deep dive §29.1): both modes → results/ltm_demo/{scenario}.{mode}.json + index.json; exit 1 on any failed gate
-analysis/LTM_BLOCKERS.md        (only if a blocker occurs)
+analysis/design/LTM_BLOCKERS.md        (only if a blocker occurs)
 ```
 
 ### 3.2 Existing files to edit (all behind flags; design §26)

@@ -8,7 +8,7 @@ Companion documents:
 
 - [LTM_DECISIONS.md](LTM_DECISIONS.md): architecture decision record.
 - [LTM_ENGINEERING_DEEP_DIVE.md](LTM_ENGINEERING_DEEP_DIVE.md): algorithms, pseudocode, thresholds, sequence diagrams and an end-to-end walkthrough.
-- Current-state evidence: [ARCHITECTURE.md](ARCHITECTURE.md), [FINDINGS.md](FINDINGS.md), [TEST_RESULTS.md](TEST_RESULTS.md), [conflict_demo.md](conflict_demo.md).
+- Current-state evidence: [ARCHITECTURE.md](../baseline/ARCHITECTURE.md), [FINDINGS.md](../baseline/FINDINGS.md), [TEST_RESULTS.md](../baseline/TEST_RESULTS.md), [conflict_demo.md](../baseline/conflict_demo.md).
 
 Labelling convention used throughout:
 
