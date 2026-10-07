@@ -80,33 +80,33 @@ sequenceDiagram
   participant WM as poke_working_memory.log
   participant OR as OpenRouter
   participant EA as Execution agent
-  participant XL as execution_agents/<slug>.log
+  participant XL as execution_agents/SLUG.log
   participant GM as Composio/Gmail
   participant S as Summarizer
 
-  U->>API: POST {messages:[...]} (only the LAST user msg is used)
-  API-->>U: 202 (empty body; UI polls /chat/history)
+  U->>API: POST messages[] (only the LAST user msg is used)
+  API-->>U: 202, empty body (UI polls /chat/history)
   API->>IA: asyncio task execute(text)
   IA->>WM: render_transcript() = summary + raw tail  (taken BEFORE appending)
-  IA->>CONV: append <user_message>   (and schedule summarisation)
+  IA->>CONV: append user_message (and schedule summarisation)
   IA->>WM: append same entry (2nd copy)
   loop ≤8 iterations
-    IA->>OR: system prompt + <conversation_history> + <active_agents> + <new_user_message> + tool turns
+    IA->>OR: system prompt + conversation_history + active_agents + new_user_message + tool turns
   end
-  IA->>CONV: <poke_reply> via send_message_to_user / send_draft  (+WM copy)
+  IA->>CONV: poke_reply via send_message_to_user / send_draft (+WM copy)
   opt delegation
-    IA->>XL: <agent_request> full instructions
+    IA->>XL: agent_request (full instructions)
     IA->>EA: create_task(execute)
-    EA->>OR: system prompt + ENTIRE <slug>.log + instructions
+    EA->>OR: system prompt + ENTIRE SLUG.log + instructions
     EA->>GM: tools.execute (draft bodies, queries, …)
     GM-->>EA: full emails (12 fields incl. clean_text)
-    EA->>XL: <agent_action> args[:200], <tool_response> result[:500], <agent_response> full
+    EA->>XL: agent_action args (200 chars), tool_response (500 chars), agent_response (full)
     EA->>IA: batch "[SUCCESS] name: response" → handle_agent_message
-    IA->>CONV: <agent_message> (verbatim exec output) + <poke_reply>
+    IA->>CONV: agent_message (verbatim exec output) + poke_reply
   end
   Note over CONV,S: when unsummarised entries ≥ threshold+tail (100+10)
   S->>OR: previous summary + entries[0..99] (user msgs, replies, agent msgs, wait reasons)
-  S->>WM: rewrite: summary_info{last_index} + summary + entries after cutoff
+  S->>WM: rewrite: summary_info.last_index + summary + entries after cutoff
   Note over CONV: raw log is NEVER truncated
 ```
 
