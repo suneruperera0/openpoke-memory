@@ -166,7 +166,9 @@
     "canaries": [
       "FORGOTTEN:meeting_pref_text",
       "FORGOTTEN:meeting_pref_value",
-      "FORGOTTEN:meeting_pref_value_json"
+      "FORGOTTEN:meeting_pref_value_json",
+      "FORGOTTEN:meeting_pref_hhmm",
+      "FORGOTTEN:meeting_pref_phrase"
     ],
     "sinks": [
       {
@@ -444,6 +446,190 @@
         "expected": "observed",
         "hits": 0,
         "sink": "trace_file"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-wal"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-shm"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "sql:memories_fts*"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "sql:memory_events"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "events_jsonl"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "n_captures": 0,
+        "sink": "llm:memory_extractor"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "n_captures": 8,
+        "sink": "llm:interaction_agent"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "ltm_block:same_session:3"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "ltm_block:new_conversation:6"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "file:poke_conversation.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "file:poke_working_memory.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "server_stdout"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_hhmm",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "trace_file"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-wal"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-shm"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "sql:memories_fts*"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "sql:memory_events"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "present": false,
+        "sink": "events_jsonl"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "n_captures": 0,
+        "sink": "llm:memory_extractor"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 6,
+        "n_captures": 8,
+        "sink": "llm:interaction_agent"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "ltm_block:same_session:3"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "ltm_block:new_conversation:6"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 1,
+        "sink": "file:poke_conversation.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 1,
+        "sink": "file:poke_working_memory.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 0,
+        "sink": "server_stdout"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_phrase",
+        "expected": "observed",
+        "hits": 1,
+        "sink": "trace_file"
       }
     ]
   },
@@ -486,14 +672,14 @@
       "OPENPOKE_LTM_EXTRACTOR": null,
       "OPENPOKE_LTM_TEST_HOOKS": false
     },
-    "generated_at": "2026-10-07T18:06:52Z",
-    "git_commit": "44387cf4bae61ec4663ad83f8abd8e342375586b",
+    "generated_at": "2026-10-07T18:48:42Z",
+    "git_commit": "a989a16d3dc593cd281736293c2f0600258d58ca",
     "git_dirty": true,
     "headline_probe": "new_conversation",
     "llm": "mock",
     "policy": null,
     "python": "3.13.5",
-    "run_id": "run_01M4BRPE9YRMN37YHD6AGSN3AT",
+    "run_id": "run_01M4BV30HQ978V2V5VCMKSSWG8",
     "sqlite": "3.53.4"
   },
   "mode": "baseline",

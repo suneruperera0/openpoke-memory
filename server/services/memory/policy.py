@@ -158,6 +158,16 @@ def poisoning_check(c: Candidate, memory_type: Optional[str] = None) -> Optional
     return reasons or None
 
 
+def canonical_text(c: Candidate, slot: SlotInfo) -> str:
+    """LTM_BLOCKERS.md B4 (review M4): for controlled-vocabulary predicates the stored/rendered sentence is ALWAYS the
+    deterministic template over (predicate, value); extractor free text is ignored. Custom predicates keep the
+    candidate text, which extractor.validate has already required to be grounded in the user's message."""
+    if c.predicate.startswith("pref.custom:"):
+        return c.text
+    obj = slot.slot_key.split("|")[2] if slot.keyed and slot.slot_key.count("|") >= 2 else c.object_entity
+    return vocab.render(c.predicate, c.value, obj)
+
+
 # ---------------------------------------------------------------------------
 # §10 decide
 # ---------------------------------------------------------------------------
@@ -203,7 +213,7 @@ def decide(
         slot=slot,
         value_json=vocab.value_json(c.predicate, c.value),
         value_hmac=value_hmac(slot.slot_key, canon),
-        canonical_text=c.text,
+        canonical_text=canonical_text(c, slot),
         importance=imp,
         confidence=conf,
         sensitivity=sensitivity,

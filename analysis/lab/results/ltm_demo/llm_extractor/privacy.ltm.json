@@ -490,14 +490,14 @@
       "OPENPOKE_LTM_EXTRACTOR": "llm",
       "OPENPOKE_LTM_TEST_HOOKS": true
     },
-    "generated_at": "2026-10-07T18:05:35Z",
-    "git_commit": "44387cf4bae61ec4663ad83f8abd8e342375586b",
+    "generated_at": "2026-10-07T18:48:56Z",
+    "git_commit": "a989a16d3dc593cd281736293c2f0600258d58ca",
     "git_dirty": true,
     "headline_probe": "same_session",
     "llm": "mock",
     "policy": "policy-0.1",
     "python": "3.13.5",
-    "run_id": "run_01M4BRNK3JA1HKTMXBWGP6H3R8",
+    "run_id": "run_01M4BV4Z6KYQHKZPF46YWYXAMM",
     "sqlite": "3.53.4"
   },
   "mode": "ltm",
@@ -537,9 +537,9 @@
         "chars": 34,
         "epoch": 0,
         "kind": "setup",
-        "observed_at": "2026-10-07T18:05:35.947Z",
+        "observed_at": "2026-10-07T18:48:56.731Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:05:35.947Z_a21c"
+        "turn_id": "turn_2026-10-07T18:48:56.731Z_ce92"
       },
       "input_safe": null,
       "memory_id": null,
@@ -552,8 +552,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:35.952Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.734Z",
       "turn_index": 0
     },
     {
@@ -573,8 +573,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:35.956Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.735Z",
       "turn_index": 0
     },
     {
@@ -599,15 +599,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:35.960Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.737Z",
       "turn_index": 0
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [],
         "families": [
           "pref.email_style",
           "constraint.confirm_before_email"
@@ -626,10 +625,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 0,
-        "n_terms": 1,
-        "terms": [
-          "email"
-        ]
+        "n_terms": 1
       },
       "input_safe": null,
       "memory_id": null,
@@ -642,8 +638,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:35.966Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.740Z",
       "turn_index": 0
     },
     {
@@ -666,8 +662,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:35.970Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.743Z",
       "turn_index": 0
     },
     {
@@ -688,8 +684,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:35.971Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.745Z",
       "turn_index": 0
     },
     {
@@ -698,7 +694,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "llm-0.1",
-        "latency_ms": 18.94,
+        "latency_ms": 19.0,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -712,8 +708,8 @@
       "seq": 6,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:36.014Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.789Z",
       "turn_index": 0
     },
     {
@@ -735,8 +731,8 @@
       "seq": 7,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
-      "ts": "2026-10-07T18:05:36.018Z",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
+      "ts": "2026-10-07T18:48:56.791Z",
       "turn_index": 0
     },
     {
@@ -746,9 +742,9 @@
         "chars": 36,
         "epoch": 0,
         "kind": "setup",
-        "observed_at": "2026-10-07T18:05:37.438Z",
+        "observed_at": "2026-10-07T18:48:59.154Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:05:37.438Z_e116"
+        "turn_id": "turn_2026-10-07T18:48:59.154Z_c8d1"
       },
       "input_safe": null,
       "memory_id": null,
@@ -761,8 +757,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.441Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.156Z",
       "turn_index": 1
     },
     {
@@ -787,8 +783,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.444Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.158Z",
       "turn_index": 1
     },
     {
@@ -808,15 +804,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.449Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.159Z",
       "turn_index": 1
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [],
         "families": [],
         "hard_filters": {
           "allowed_use": "interaction_context",
@@ -832,12 +827,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 0,
-        "n_terms": 3,
-        "terms": [
-          "test",
-          "api",
-          "key"
-        ]
+        "n_terms": 3
       },
       "input_safe": null,
       "memory_id": null,
@@ -850,8 +840,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.453Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.160Z",
       "turn_index": 1
     },
     {
@@ -874,8 +864,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.459Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.163Z",
       "turn_index": 1
     },
     {
@@ -896,8 +886,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.462Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.164Z",
       "turn_index": 1
     },
     {
@@ -906,7 +896,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "llm-0.1",
-        "latency_ms": 19.54,
+        "latency_ms": 11.3,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -920,8 +910,8 @@
       "seq": 6,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.494Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.185Z",
       "turn_index": 1
     },
     {
@@ -943,8 +933,8 @@
       "seq": 7,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
-      "ts": "2026-10-07T18:05:37.496Z",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
+      "ts": "2026-10-07T18:48:59.187Z",
       "turn_index": 1
     },
     {
@@ -954,9 +944,9 @@
         "chars": 100,
         "epoch": 0,
         "kind": "setup",
-        "observed_at": "2026-10-07T18:05:38.841Z",
+        "observed_at": "2026-10-07T18:49:00.294Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:05:38.841Z_7bde"
+        "turn_id": "turn_2026-10-07T18:49:00.294Z_0f6c"
       },
       "input_safe": null,
       "memory_id": null,
@@ -969,8 +959,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.843Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.296Z",
       "turn_index": 2
     },
     {
@@ -995,8 +985,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.845Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.298Z",
       "turn_index": 2
     },
     {
@@ -1021,15 +1011,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.846Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.299Z",
       "turn_index": 2
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [],
         "families": [
           "pref.email_style",
           "constraint.confirm_before_email"
@@ -1048,15 +1037,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 0,
-        "n_terms": 6,
-        "terms": [
-          "email",
-          "test",
-          "api",
-          "key",
-          "prefer",
-          "concis"
-        ]
+        "n_terms": 6
       },
       "input_safe": null,
       "memory_id": null,
@@ -1069,8 +1050,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.848Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.301Z",
       "turn_index": 2
     },
     {
@@ -1093,8 +1074,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.850Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.303Z",
       "turn_index": 2
     },
     {
@@ -1115,8 +1096,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.852Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.304Z",
       "turn_index": 2
     },
     {
@@ -1125,7 +1106,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "llm-0.1",
-        "latency_ms": 17.76,
+        "latency_ms": 10.19,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -1139,8 +1120,8 @@
       "seq": 6,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.878Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.324Z",
       "turn_index": 2
     },
     {
@@ -1162,8 +1143,8 @@
       "seq": 7,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.880Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.326Z",
       "turn_index": 2
     },
     {
@@ -1185,8 +1166,8 @@
       "seq": 8,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.881Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.327Z",
       "turn_index": 2
     },
     {
@@ -1208,8 +1189,8 @@
       "seq": 9,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
-      "ts": "2026-10-07T18:05:38.882Z",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
+      "ts": "2026-10-07T18:49:00.329Z",
       "turn_index": 2
     },
     {
@@ -1219,9 +1200,9 @@
         "chars": 43,
         "epoch": 0,
         "kind": "probe",
-        "observed_at": "2026-10-07T18:05:39.995Z",
+        "observed_at": "2026-10-07T18:49:01.449Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:05:39.995Z_ddb8"
+        "turn_id": "turn_2026-10-07T18:49:01.449Z_d710"
       },
       "input_safe": null,
       "memory_id": null,
@@ -1234,8 +1215,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:39.997Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.451Z",
       "turn_index": 3
     },
     {
@@ -1255,8 +1236,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:39.998Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.453Z",
       "turn_index": 3
     },
     {
@@ -1276,17 +1257,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:39.999Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.454Z",
       "turn_index": 3
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [
-          "person:sam"
-        ],
         "families": [
           "pref.email_style",
           "constraint.confirm_before_email"
@@ -1305,14 +1283,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 1,
-        "n_terms": 5,
-        "terms": [
-          "draft",
-          "short",
-          "note",
-          "sam",
-          "launch"
-        ]
+        "n_terms": 5
       },
       "input_safe": null,
       "memory_id": null,
@@ -1325,8 +1296,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:40.001Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.456Z",
       "turn_index": 3
     },
     {
@@ -1349,8 +1320,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:40.004Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.458Z",
       "turn_index": 3
     },
     {
@@ -1371,8 +1342,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:40.005Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.460Z",
       "turn_index": 3
     },
     {
@@ -1381,7 +1352,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "llm-0.1",
-        "latency_ms": 9.62,
+        "latency_ms": 9.96,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -1395,8 +1366,8 @@
       "seq": 6,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:40.025Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.479Z",
       "turn_index": 3
     },
     {
@@ -1418,8 +1389,8 @@
       "seq": 7,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
-      "ts": "2026-10-07T18:05:40.026Z",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
+      "ts": "2026-10-07T18:49:01.481Z",
       "turn_index": 3
     },
     {
@@ -1429,9 +1400,9 @@
         "chars": 43,
         "epoch": 1,
         "kind": "probe",
-        "observed_at": "2026-10-07T18:05:41.696Z",
+        "observed_at": "2026-10-07T18:49:03.128Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:05:41.696Z_f43d"
+        "turn_id": "turn_2026-10-07T18:49:03.128Z_c056"
       },
       "input_safe": null,
       "memory_id": null,
@@ -1444,8 +1415,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.699Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.130Z",
       "turn_index": 5
     },
     {
@@ -1465,8 +1436,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.701Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.131Z",
       "turn_index": 5
     },
     {
@@ -1486,17 +1457,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.702Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.133Z",
       "turn_index": 5
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [
-          "person:sam"
-        ],
         "families": [
           "pref.email_style",
           "constraint.confirm_before_email"
@@ -1515,14 +1483,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 1,
-        "n_terms": 5,
-        "terms": [
-          "draft",
-          "short",
-          "note",
-          "sam",
-          "launch"
-        ]
+        "n_terms": 5
       },
       "input_safe": null,
       "memory_id": null,
@@ -1535,8 +1496,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.704Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.134Z",
       "turn_index": 5
     },
     {
@@ -1559,8 +1520,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.706Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.137Z",
       "turn_index": 5
     },
     {
@@ -1581,8 +1542,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.707Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.138Z",
       "turn_index": 5
     },
     {
@@ -1591,7 +1552,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "llm-0.1",
-        "latency_ms": 10.77,
+        "latency_ms": 12.91,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -1605,8 +1566,8 @@
       "seq": 6,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.729Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.161Z",
       "turn_index": 5
     },
     {
@@ -1628,8 +1589,8 @@
       "seq": 7,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
-      "ts": "2026-10-07T18:05:41.730Z",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
+      "ts": "2026-10-07T18:49:03.163Z",
       "turn_index": 5
     }
   ],
@@ -1724,9 +1685,7 @@
           "constraint.confirm_before_email"
         ],
         "n_terms": 1,
-        "terms": [
-          "email"
-        ]
+        "terms": []
       },
       "selected": [],
       "turn_index": 0
@@ -1756,11 +1715,7 @@
         "entities": [],
         "families": [],
         "n_terms": 3,
-        "terms": [
-          "test",
-          "api",
-          "key"
-        ]
+        "terms": []
       },
       "selected": [],
       "turn_index": 1
@@ -1793,14 +1748,7 @@
           "constraint.confirm_before_email"
         ],
         "n_terms": 6,
-        "terms": [
-          "email",
-          "test",
-          "api",
-          "key",
-          "prefer",
-          "concis"
-        ]
+        "terms": []
       },
       "selected": [],
       "turn_index": 2
@@ -1827,21 +1775,13 @@
       "ltm_block_tokens": 0,
       "probe": "same_session",
       "query": {
-        "entities": [
-          "person:sam"
-        ],
+        "entities": [],
         "families": [
           "pref.email_style",
           "constraint.confirm_before_email"
         ],
         "n_terms": 5,
-        "terms": [
-          "draft",
-          "short",
-          "note",
-          "sam",
-          "launch"
-        ]
+        "terms": []
       },
       "selected": [],
       "turn_index": 3
@@ -1868,21 +1808,13 @@
       "ltm_block_tokens": 0,
       "probe": "new_conversation",
       "query": {
-        "entities": [
-          "person:sam"
-        ],
+        "entities": [],
         "families": [
           "pref.email_style",
           "constraint.confirm_before_email"
         ],
         "n_terms": 5,
-        "terms": [
-          "draft",
-          "short",
-          "note",
-          "sam",
-          "launch"
-        ]
+        "terms": []
       },
       "selected": [],
       "turn_index": 5
@@ -1915,7 +1847,7 @@
       ],
       "session": "s1",
       "text_safe": "My email is [EMAIL_1].",
-      "trace_id": "trc_01M4BRNMACT6NGDK80TVZVW9EH",
+      "trace_id": "trc_01M4BV504VN5MQ0DXTJSN0MR7X",
       "turn_index": 0
     },
     {
@@ -1941,7 +1873,7 @@
       ],
       "session": "s1",
       "text_safe": "My test API key is [SECRET:API_KEY].",
-      "trace_id": "trc_01M4BRNNRZAVAW6CF66JF2FBZW",
+      "trace_id": "trc_01M4BV52GK4TMKXY3KYE0NR6AT",
       "turn_index": 1
     },
     {
@@ -1985,7 +1917,7 @@
       ],
       "session": "s1",
       "text_safe": "My email is [EMAIL_1], my test API key is [SECRET:API_KEY], and I prefer concise emails.",
-      "trace_id": "trc_01M4BRNQ4TX70AG8VZAGH8W8N8",
+      "trace_id": "trc_01M4BV53M728VAN6GPYPWPKD5Y",
       "turn_index": 2
     },
     {
@@ -2014,7 +1946,7 @@
       "probe": "same_session",
       "session": "s1",
       "text_safe": "Draft a short note to Sam about the launch.",
-      "trace_id": "trc_01M4BRNR8VN5G0K0GXHPRZ0FVS",
+      "trace_id": "trc_01M4BV54RAMYYXJV91HVYV6RE1",
       "turn_index": 3
     },
     {
@@ -2051,7 +1983,7 @@
       "probe": "new_conversation",
       "session": "s2",
       "text_safe": "Draft a short note to Sam about the launch.",
-      "trace_id": "trc_01M4BRNSY1D61HZYDCB7S0E16Q",
+      "trace_id": "trc_01M4BV56CS00APQE1AE2C8E9H8",
       "turn_index": 5
     }
   ]

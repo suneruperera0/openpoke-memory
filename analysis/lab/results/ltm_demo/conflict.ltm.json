@@ -27,12 +27,12 @@
       },
       "evidence": {
         "edge": {
-          "from": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "from": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "kind": "superseded_by",
-          "to": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "to": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         },
-        "python_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
-        "rust_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+        "python_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
+        "rust_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
       },
       "expected": {
         "Python": "superseded",
@@ -49,17 +49,17 @@
           {
             "display": "Python",
             "filter": "status=superseded",
-            "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+            "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
           },
           {
             "display": "Python",
             "filter": "status=superseded",
-            "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+            "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
           },
           {
             "display": "Python",
             "filter": "status=superseded",
-            "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+            "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
           }
         ],
         "probes": [
@@ -341,17 +341,17 @@
           "deleted_at": null,
           "display": "Python",
           "expires_at": null,
-          "id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:13.267Z",
+          "observed_at": "2026-10-07T18:48:01.735Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "active",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-              "ts": "2026-10-07T18:06:13.347Z",
+              "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+              "ts": "2026-10-07T18:48:01.778Z",
               "turn_index": 0
             }
           ],
@@ -366,9 +366,9 @@
       "deleted": [],
       "edges": [
         {
-          "from": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "from": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "kind": "superseded_by",
-          "to": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "to": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "memories": [
@@ -379,27 +379,27 @@
           "deleted_at": null,
           "display": "Python",
           "expires_at": null,
-          "id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:13.267Z",
+          "observed_at": "2026-10-07T18:48:01.735Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "superseded",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-              "ts": "2026-10-07T18:06:13.347Z",
+              "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+              "ts": "2026-10-07T18:48:01.778Z",
               "turn_index": 0
             },
             {
               "status": "superseded",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
-          "superseded_by_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "superseded_by_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "supersedes_id": null
         },
         {
@@ -409,22 +409,22 @@
           "deleted_at": null,
           "display": "Rust",
           "expires_at": null,
-          "id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:14.750Z",
+          "observed_at": "2026-10-07T18:48:04.171Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "active",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
           "superseded_by_id": null,
-          "supersedes_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "supersedes_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "tombstones": []
@@ -434,9 +434,9 @@
       "deleted": [],
       "edges": [
         {
-          "from": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "from": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "kind": "superseded_by",
-          "to": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "to": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "memories": [
@@ -447,27 +447,27 @@
           "deleted_at": null,
           "display": "Python",
           "expires_at": null,
-          "id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:13.267Z",
+          "observed_at": "2026-10-07T18:48:01.735Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "superseded",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-              "ts": "2026-10-07T18:06:13.347Z",
+              "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+              "ts": "2026-10-07T18:48:01.778Z",
               "turn_index": 0
             },
             {
               "status": "superseded",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
-          "superseded_by_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "superseded_by_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "supersedes_id": null
         },
         {
@@ -477,22 +477,22 @@
           "deleted_at": null,
           "display": "Rust",
           "expires_at": null,
-          "id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:14.750Z",
+          "observed_at": "2026-10-07T18:48:04.171Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "active",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
           "superseded_by_id": null,
-          "supersedes_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "supersedes_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "tombstones": []
@@ -502,9 +502,9 @@
       "deleted": [],
       "edges": [
         {
-          "from": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "from": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "kind": "superseded_by",
-          "to": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "to": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "memories": [
@@ -515,27 +515,27 @@
           "deleted_at": null,
           "display": "Python",
           "expires_at": null,
-          "id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:13.267Z",
+          "observed_at": "2026-10-07T18:48:01.735Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "superseded",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-              "ts": "2026-10-07T18:06:13.347Z",
+              "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+              "ts": "2026-10-07T18:48:01.778Z",
               "turn_index": 0
             },
             {
               "status": "superseded",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
-          "superseded_by_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "superseded_by_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "supersedes_id": null
         },
         {
@@ -545,22 +545,22 @@
           "deleted_at": null,
           "display": "Rust",
           "expires_at": null,
-          "id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:14.750Z",
+          "observed_at": "2026-10-07T18:48:04.171Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "active",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
           "superseded_by_id": null,
-          "supersedes_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "supersedes_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "tombstones": []
@@ -570,9 +570,9 @@
       "deleted": [],
       "edges": [
         {
-          "from": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "from": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "kind": "superseded_by",
-          "to": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "to": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "memories": [
@@ -583,27 +583,27 @@
           "deleted_at": null,
           "display": "Python",
           "expires_at": null,
-          "id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:13.267Z",
+          "observed_at": "2026-10-07T18:48:01.735Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "superseded",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-              "ts": "2026-10-07T18:06:13.347Z",
+              "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+              "ts": "2026-10-07T18:48:01.778Z",
               "turn_index": 0
             },
             {
               "status": "superseded",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
-          "superseded_by_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "superseded_by_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "supersedes_id": null
         },
         {
@@ -613,22 +613,22 @@
           "deleted_at": null,
           "display": "Rust",
           "expires_at": null,
-          "id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:14.750Z",
+          "observed_at": "2026-10-07T18:48:04.171Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "active",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
           "superseded_by_id": null,
-          "supersedes_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "supersedes_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "tombstones": []
@@ -638,9 +638,9 @@
       "deleted": [],
       "edges": [
         {
-          "from": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "from": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "kind": "superseded_by",
-          "to": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "to": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "memories": [
@@ -651,27 +651,27 @@
           "deleted_at": null,
           "display": "Python",
           "expires_at": null,
-          "id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:13.267Z",
+          "observed_at": "2026-10-07T18:48:01.735Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "superseded",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-              "ts": "2026-10-07T18:06:13.347Z",
+              "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+              "ts": "2026-10-07T18:48:01.778Z",
               "turn_index": 0
             },
             {
               "status": "superseded",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
-          "superseded_by_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "superseded_by_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "supersedes_id": null
         },
         {
@@ -681,22 +681,22 @@
           "deleted_at": null,
           "display": "Rust",
           "expires_at": null,
-          "id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:14.750Z",
+          "observed_at": "2026-10-07T18:48:04.171Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "active",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
           "superseded_by_id": null,
-          "supersedes_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "supersedes_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "tombstones": []
@@ -706,9 +706,9 @@
       "deleted": [],
       "edges": [
         {
-          "from": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "from": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "kind": "superseded_by",
-          "to": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "to": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "memories": [
@@ -719,27 +719,27 @@
           "deleted_at": null,
           "display": "Python",
           "expires_at": null,
-          "id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:13.267Z",
+          "observed_at": "2026-10-07T18:48:01.735Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "superseded",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-              "ts": "2026-10-07T18:06:13.347Z",
+              "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+              "ts": "2026-10-07T18:48:01.778Z",
               "turn_index": 0
             },
             {
               "status": "superseded",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
-          "superseded_by_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "superseded_by_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "supersedes_id": null
         },
         {
@@ -749,22 +749,22 @@
           "deleted_at": null,
           "display": "Rust",
           "expires_at": null,
-          "id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "importance": 0.75,
           "memory_type": "preference",
-          "observed_at": "2026-10-07T18:06:14.750Z",
+          "observed_at": "2026-10-07T18:48:04.171Z",
           "slot_key": "user|pref.favorite_programming_language",
           "status": "active",
           "status_history": [
             {
               "status": "active",
-              "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-              "ts": "2026-10-07T18:06:14.782Z",
+              "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+              "ts": "2026-10-07T18:48:04.204Z",
               "turn_index": 1
             }
           ],
           "superseded_by_id": null,
-          "supersedes_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "supersedes_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "tombstones": []
@@ -780,14 +780,14 @@
       "OPENPOKE_LTM_EXTRACTOR": "rules",
       "OPENPOKE_LTM_TEST_HOOKS": true
     },
-    "generated_at": "2026-10-07T18:06:13Z",
-    "git_commit": "44387cf4bae61ec4663ad83f8abd8e342375586b",
+    "generated_at": "2026-10-07T18:48:01Z",
+    "git_commit": "a989a16d3dc593cd281736293c2f0600258d58ca",
     "git_dirty": true,
     "headline_probe": "same_session",
     "llm": "mock",
     "policy": "policy-0.1",
     "python": "3.13.5",
-    "run_id": "run_01M4BRPE9YRMN37YHD6AGSN3AT",
+    "run_id": "run_01M4BV30HQ978V2V5VCMKSSWG8",
     "sqlite": "3.53.4"
   },
   "mode": "ltm",
@@ -828,9 +828,9 @@
         "chars": 43,
         "epoch": 0,
         "kind": "setup",
-        "observed_at": "2026-10-07T18:06:13.267Z",
+        "observed_at": "2026-10-07T18:48:01.735Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:06:13.267Z_3b1b"
+        "turn_id": "turn_2026-10-07T18:48:01.735Z_81b8"
       },
       "input_safe": null,
       "memory_id": null,
@@ -843,8 +843,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.282Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.737Z",
       "turn_index": 0
     },
     {
@@ -864,8 +864,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.287Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.739Z",
       "turn_index": 0
     },
     {
@@ -885,17 +885,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.290Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.740Z",
       "turn_index": 0
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [
-          "person:python"
-        ],
         "families": [
           "pref.favorite_programming_language",
           "pref.likes"
@@ -914,13 +911,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 1,
-        "n_terms": 4,
-        "terms": [
-          "favorit",
-          "program",
-          "languag",
-          "python"
-        ]
+        "n_terms": 4
       },
       "input_safe": null,
       "memory_id": null,
@@ -933,8 +924,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.296Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.743Z",
       "turn_index": 0
     },
     {
@@ -957,8 +948,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.299Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.745Z",
       "turn_index": 0
     },
     {
@@ -979,8 +970,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.301Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.746Z",
       "turn_index": 0
     },
     {
@@ -989,7 +980,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "rules-0.1",
-        "latency_ms": 0.27,
+        "latency_ms": 0.16,
         "n_candidates": 1
       },
       "input_safe": null,
@@ -1003,8 +994,8 @@
       "seq": 6,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.339Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.770Z",
       "turn_index": 0
     },
     {
@@ -1025,8 +1016,8 @@
       "seq": 7,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.340Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.771Z",
       "turn_index": 0
     },
     {
@@ -1049,8 +1040,8 @@
       "seq": 8,
       "source": "event",
       "stage": "privacy.classify",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.342Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.773Z",
       "turn_index": 0
     },
     {
@@ -1081,8 +1072,8 @@
       "seq": 9,
       "source": "event",
       "stage": "policy",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.344Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.775Z",
       "turn_index": 0
     },
     {
@@ -1092,11 +1083,11 @@
         "display": "Python",
         "duplicate": false,
         "label": "favorite programming language",
-        "new_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+        "new_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
         "slot_key": "user|pref.favorite_programming_language"
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+      "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
       "node": "store",
       "output_safe": "User's favorite programming language is Python.",
       "reason": "slot user|pref.favorite_programming_language: new value Python",
@@ -1111,8 +1102,8 @@
       "seq": 10,
       "source": "event",
       "stage": "consolidate",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
-      "ts": "2026-10-07T18:06:13.347Z",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
+      "ts": "2026-10-07T18:48:01.778Z",
       "turn_index": 0
     },
     {
@@ -1122,9 +1113,9 @@
         "chars": 51,
         "epoch": 0,
         "kind": "setup",
-        "observed_at": "2026-10-07T18:06:14.750Z",
+        "observed_at": "2026-10-07T18:48:04.171Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:06:14.750Z_7604"
+        "turn_id": "turn_2026-10-07T18:48:04.171Z_1730"
       },
       "input_safe": null,
       "memory_id": null,
@@ -1137,8 +1128,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.752Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.173Z",
       "turn_index": 1
     },
     {
@@ -1158,8 +1149,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.753Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.174Z",
       "turn_index": 1
     },
     {
@@ -1179,17 +1170,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.754Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.175Z",
       "turn_index": 1
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [
-          "person:rust"
-        ],
         "families": [
           "pref.favorite_programming_language",
           "pref.likes"
@@ -1208,13 +1196,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 1,
-        "n_terms": 4,
-        "terms": [
-          "favorit",
-          "program",
-          "languag",
-          "rust"
-        ]
+        "n_terms": 4
       },
       "input_safe": null,
       "memory_id": null,
@@ -1227,8 +1209,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.755Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.177Z",
       "turn_index": 1
     },
     {
@@ -1251,8 +1233,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.758Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.179Z",
       "turn_index": 1
     },
     {
@@ -1272,8 +1254,8 @@
       "seq": 5,
       "source": "event",
       "stage": "privacy.egress",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.760Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.181Z",
       "turn_index": 1
     },
     {
@@ -1293,7 +1275,7 @@
         "total": 0.88
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+      "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
       "node": "retrieve",
       "output_safe": "User's favorite programming language is Python.",
       "reason": null,
@@ -1309,8 +1291,8 @@
       "seq": 6,
       "source": "event",
       "stage": "retrieve.rank",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.761Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.182Z",
       "turn_index": 1
     },
     {
@@ -1321,7 +1303,7 @@
         "tokens": 32
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+      "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
       "node": "agent",
       "output_safe": null,
       "reason": null,
@@ -1331,8 +1313,8 @@
       "seq": 7,
       "source": "event",
       "stage": "prompt.render",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.762Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.183Z",
       "turn_index": 1
     },
     {
@@ -1342,7 +1324,7 @@
         "selected": [
           {
             "alias": "m1",
-            "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+            "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
           }
         ],
         "tokens": 111
@@ -1358,8 +1340,8 @@
       "seq": 8,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.763Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.185Z",
       "turn_index": 1
     },
     {
@@ -1382,8 +1364,8 @@
       "seq": 9,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.774Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.196Z",
       "turn_index": 1
     },
     {
@@ -1404,8 +1386,8 @@
       "seq": 10,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.775Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.197Z",
       "turn_index": 1
     },
     {
@@ -1428,8 +1410,8 @@
       "seq": 11,
       "source": "event",
       "stage": "privacy.classify",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.776Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.199Z",
       "turn_index": 1
     },
     {
@@ -1460,8 +1442,8 @@
       "seq": 12,
       "source": "event",
       "stage": "policy",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.778Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.201Z",
       "turn_index": 1
     },
     {
@@ -1471,12 +1453,12 @@
         "display": "Rust",
         "duplicate": false,
         "label": "favorite programming language",
-        "new_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
-        "old_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+        "new_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
+        "old_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
         "slot_key": "user|pref.favorite_programming_language"
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "node": "supersede",
       "output_safe": "User's favorite programming language is Rust.",
       "reason": "slot user|pref.favorite_programming_language: Rust replaces Python (0.90 ≥ 0.80)",
@@ -1485,7 +1467,7 @@
         "NEWER_EXPLICIT"
       ],
       "refs": {
-        "old_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+        "old_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
         "resolved_contested": []
       },
       "scores": {
@@ -1495,8 +1477,8 @@
       "seq": 13,
       "source": "event",
       "stage": "consolidate",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
-      "ts": "2026-10-07T18:06:14.782Z",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
+      "ts": "2026-10-07T18:48:04.204Z",
       "turn_index": 1
     },
     {
@@ -1506,9 +1488,9 @@
         "chars": 40,
         "epoch": 0,
         "kind": "probe",
-        "observed_at": "2026-10-07T18:06:15.899Z",
+        "observed_at": "2026-10-07T18:48:05.305Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:06:15.899Z_7b5f"
+        "turn_id": "turn_2026-10-07T18:48:05.305Z_a4ab"
       },
       "input_safe": null,
       "memory_id": null,
@@ -1521,8 +1503,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.901Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.307Z",
       "turn_index": 2
     },
     {
@@ -1542,8 +1524,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.902Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.308Z",
       "turn_index": 2
     },
     {
@@ -1563,15 +1545,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.903Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.309Z",
       "turn_index": 2
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [],
         "families": [
           "pref.favorite_programming_language",
           "pref.likes"
@@ -1590,12 +1571,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 0,
-        "n_terms": 3,
-        "terms": [
-          "favorit",
-          "program",
-          "languag"
-        ]
+        "n_terms": 3
       },
       "input_safe": null,
       "memory_id": null,
@@ -1608,8 +1584,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.904Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.310Z",
       "turn_index": 2
     },
     {
@@ -1621,7 +1597,7 @@
         "slot_key": "user|pref.favorite_programming_language"
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+      "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
       "node": "retrieve",
       "output_safe": "User's favorite programming language is Python.",
       "reason": null,
@@ -1631,8 +1607,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.filter",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.906Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.313Z",
       "turn_index": 2
     },
     {
@@ -1655,8 +1631,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.907Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.314Z",
       "turn_index": 2
     },
     {
@@ -1676,8 +1652,8 @@
       "seq": 6,
       "source": "event",
       "stage": "privacy.egress",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.909Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.315Z",
       "turn_index": 2
     },
     {
@@ -1697,7 +1673,7 @@
         "total": 0.88
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "node": "retrieve",
       "output_safe": "User's favorite programming language is Rust.",
       "reason": null,
@@ -1713,8 +1689,8 @@
       "seq": 7,
       "source": "event",
       "stage": "retrieve.rank",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.910Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.316Z",
       "turn_index": 2
     },
     {
@@ -1725,7 +1701,7 @@
         "tokens": 39
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "node": "agent",
       "output_safe": null,
       "reason": null,
@@ -1735,8 +1711,8 @@
       "seq": 8,
       "source": "event",
       "stage": "prompt.render",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.911Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.317Z",
       "turn_index": 2
     },
     {
@@ -1746,7 +1722,7 @@
         "selected": [
           {
             "alias": "m1",
-            "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+            "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
           }
         ],
         "tokens": 118
@@ -1762,8 +1738,8 @@
       "seq": 9,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.912Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.319Z",
       "turn_index": 2
     },
     {
@@ -1772,7 +1748,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "rules-0.1",
-        "latency_ms": 0.29,
+        "latency_ms": 0.24,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -1786,8 +1762,8 @@
       "seq": 10,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.924Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.329Z",
       "turn_index": 2
     },
     {
@@ -1809,8 +1785,8 @@
       "seq": 11,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
-      "ts": "2026-10-07T18:06:15.925Z",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
+      "ts": "2026-10-07T18:48:05.330Z",
       "turn_index": 2
     },
     {
@@ -1820,9 +1796,9 @@
         "chars": 40,
         "epoch": 1,
         "kind": "probe",
-        "observed_at": "2026-10-07T18:06:17.610Z",
+        "observed_at": "2026-10-07T18:48:06.987Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:06:17.610Z_7881"
+        "turn_id": "turn_2026-10-07T18:48:06.987Z_e890"
       },
       "input_safe": null,
       "memory_id": null,
@@ -1835,8 +1811,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.612Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:06.989Z",
       "turn_index": 4
     },
     {
@@ -1856,8 +1832,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.614Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:06.991Z",
       "turn_index": 4
     },
     {
@@ -1877,15 +1853,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.615Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:06.992Z",
       "turn_index": 4
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [],
         "families": [
           "pref.favorite_programming_language",
           "pref.likes"
@@ -1904,12 +1879,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 0,
-        "n_terms": 3,
-        "terms": [
-          "favorit",
-          "program",
-          "languag"
-        ]
+        "n_terms": 3
       },
       "input_safe": null,
       "memory_id": null,
@@ -1922,8 +1892,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.617Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:06.994Z",
       "turn_index": 4
     },
     {
@@ -1935,7 +1905,7 @@
         "slot_key": "user|pref.favorite_programming_language"
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+      "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
       "node": "retrieve",
       "output_safe": "User's favorite programming language is Python.",
       "reason": null,
@@ -1945,8 +1915,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.filter",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.619Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:06.996Z",
       "turn_index": 4
     },
     {
@@ -1969,8 +1939,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.620Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:06.997Z",
       "turn_index": 4
     },
     {
@@ -1990,8 +1960,8 @@
       "seq": 6,
       "source": "event",
       "stage": "privacy.egress",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.621Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:06.999Z",
       "turn_index": 4
     },
     {
@@ -2011,7 +1981,7 @@
         "total": 0.88
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "node": "retrieve",
       "output_safe": "User's favorite programming language is Rust.",
       "reason": null,
@@ -2027,8 +1997,8 @@
       "seq": 7,
       "source": "event",
       "stage": "retrieve.rank",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.622Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:07.000Z",
       "turn_index": 4
     },
     {
@@ -2039,7 +2009,7 @@
         "tokens": 39
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "node": "agent",
       "output_safe": null,
       "reason": null,
@@ -2049,8 +2019,8 @@
       "seq": 8,
       "source": "event",
       "stage": "prompt.render",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.624Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:07.001Z",
       "turn_index": 4
     },
     {
@@ -2060,7 +2030,7 @@
         "selected": [
           {
             "alias": "m1",
-            "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+            "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
           }
         ],
         "tokens": 118
@@ -2076,8 +2046,8 @@
       "seq": 9,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.625Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:07.002Z",
       "turn_index": 4
     },
     {
@@ -2086,7 +2056,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "rules-0.1",
-        "latency_ms": 0.04,
+        "latency_ms": 0.03,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -2100,8 +2070,8 @@
       "seq": 10,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.636Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:07.013Z",
       "turn_index": 4
     },
     {
@@ -2123,8 +2093,8 @@
       "seq": 11,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
-      "ts": "2026-10-07T18:06:17.637Z",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
+      "ts": "2026-10-07T18:48:07.014Z",
       "turn_index": 4
     },
     {
@@ -2134,9 +2104,9 @@
         "chars": 40,
         "epoch": 1,
         "kind": "probe",
-        "observed_at": "2026-10-07T18:06:20.268Z",
+        "observed_at": "2026-10-07T18:48:09.623Z",
         "source_kind": "user_message",
-        "turn_id": "turn_2026-10-07T18:06:20.268Z_36b2"
+        "turn_id": "turn_2026-10-07T18:48:09.623Z_6d0f"
       },
       "input_safe": null,
       "memory_id": null,
@@ -2149,8 +2119,8 @@
       "seq": 0,
       "source": "event",
       "stage": "ingest",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.269Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.626Z",
       "turn_index": 6
     },
     {
@@ -2170,8 +2140,8 @@
       "seq": 1,
       "source": "event",
       "stage": "ingress.scrub",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.271Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.627Z",
       "turn_index": 6
     },
     {
@@ -2191,15 +2161,14 @@
       "seq": 2,
       "source": "event",
       "stage": "privacy.scrub",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.272Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.628Z",
       "turn_index": 6
     },
     {
       "candidate_id": null,
       "decision": null,
       "detail": {
-        "entities": [],
         "families": [
           "pref.favorite_programming_language",
           "pref.likes"
@@ -2218,12 +2187,7 @@
           "user_scope": "local-user"
         },
         "n_entities": 0,
-        "n_terms": 3,
-        "terms": [
-          "favorit",
-          "program",
-          "languag"
-        ]
+        "n_terms": 3
       },
       "input_safe": null,
       "memory_id": null,
@@ -2236,8 +2200,8 @@
       "seq": 3,
       "source": "event",
       "stage": "retrieve.query",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.275Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.631Z",
       "turn_index": 6
     },
     {
@@ -2249,7 +2213,7 @@
         "slot_key": "user|pref.favorite_programming_language"
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+      "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
       "node": "retrieve",
       "output_safe": "User's favorite programming language is Python.",
       "reason": null,
@@ -2259,8 +2223,8 @@
       "seq": 4,
       "source": "event",
       "stage": "retrieve.filter",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.277Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.634Z",
       "turn_index": 6
     },
     {
@@ -2283,8 +2247,8 @@
       "seq": 5,
       "source": "event",
       "stage": "retrieve.candidates",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.278Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.635Z",
       "turn_index": 6
     },
     {
@@ -2304,8 +2268,8 @@
       "seq": 6,
       "source": "event",
       "stage": "privacy.egress",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.280Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.636Z",
       "turn_index": 6
     },
     {
@@ -2325,7 +2289,7 @@
         "total": 0.88
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "node": "retrieve",
       "output_safe": "User's favorite programming language is Rust.",
       "reason": null,
@@ -2341,8 +2305,8 @@
       "seq": 7,
       "source": "event",
       "stage": "retrieve.rank",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.281Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.638Z",
       "turn_index": 6
     },
     {
@@ -2353,7 +2317,7 @@
         "tokens": 39
       },
       "input_safe": null,
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "node": "agent",
       "output_safe": null,
       "reason": null,
@@ -2363,8 +2327,8 @@
       "seq": 8,
       "source": "event",
       "stage": "prompt.render",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.282Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.639Z",
       "turn_index": 6
     },
     {
@@ -2374,7 +2338,7 @@
         "selected": [
           {
             "alias": "m1",
-            "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+            "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
           }
         ],
         "tokens": 118
@@ -2390,8 +2354,8 @@
       "seq": 9,
       "source": "event",
       "stage": "retrieve.select",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.284Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.640Z",
       "turn_index": 6
     },
     {
@@ -2400,7 +2364,7 @@
       "detail": {
         "duplicate": false,
         "extractor_version": "rules-0.1",
-        "latency_ms": 0.73,
+        "latency_ms": 0.51,
         "n_candidates": 0
       },
       "input_safe": null,
@@ -2414,8 +2378,8 @@
       "seq": 10,
       "source": "event",
       "stage": "extract",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.310Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.668Z",
       "turn_index": 6
     },
     {
@@ -2437,8 +2401,8 @@
       "seq": 11,
       "source": "event",
       "stage": "extract.clause",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
-      "ts": "2026-10-07T18:06:20.311Z",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
+      "ts": "2026-10-07T18:48:09.669Z",
       "turn_index": 6
     }
   ],
@@ -2560,20 +2524,13 @@
       "ltm_block_tokens": 0,
       "probe": null,
       "query": {
-        "entities": [
-          "person:python"
-        ],
+        "entities": [],
         "families": [
           "pref.favorite_programming_language",
           "pref.likes"
         ],
         "n_terms": 4,
-        "terms": [
-          "favorit",
-          "program",
-          "languag",
-          "python"
-        ]
+        "terms": []
       },
       "selected": [],
       "turn_index": 0
@@ -2589,7 +2546,7 @@
             "fts"
           ],
           "imp": 0.75,
-          "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "rec": 1.0,
           "rel": 0.9,
           "selected": true,
@@ -2619,25 +2576,18 @@
       "ltm_block_tokens": 111,
       "probe": null,
       "query": {
-        "entities": [
-          "person:rust"
-        ],
+        "entities": [],
         "families": [
           "pref.favorite_programming_language",
           "pref.likes"
         ],
         "n_terms": 4,
-        "terms": [
-          "favorit",
-          "program",
-          "languag",
-          "rust"
-        ]
+        "terms": []
       },
       "selected": [
         {
           "alias": "m1",
-          "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "turn_index": 1
@@ -2653,7 +2603,7 @@
             "fts"
           ],
           "imp": 0.75,
-          "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "rec": 1.0,
           "rel": 0.9,
           "selected": true,
@@ -2668,7 +2618,7 @@
         {
           "display": "Python",
           "filter": "status=superseded",
-          "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "hard_filters": {
@@ -2695,16 +2645,12 @@
           "pref.likes"
         ],
         "n_terms": 3,
-        "terms": [
-          "favorit",
-          "program",
-          "languag"
-        ]
+        "terms": []
       },
       "selected": [
         {
           "alias": "m1",
-          "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "turn_index": 2
@@ -2720,7 +2666,7 @@
             "fts"
           ],
           "imp": 0.75,
-          "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "rec": 1.0,
           "rel": 0.9,
           "selected": true,
@@ -2735,7 +2681,7 @@
         {
           "display": "Python",
           "filter": "status=superseded",
-          "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "hard_filters": {
@@ -2762,16 +2708,12 @@
           "pref.likes"
         ],
         "n_terms": 3,
-        "terms": [
-          "favorit",
-          "program",
-          "languag"
-        ]
+        "terms": []
       },
       "selected": [
         {
           "alias": "m1",
-          "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "turn_index": 4
@@ -2787,7 +2729,7 @@
             "fts"
           ],
           "imp": 0.75,
-          "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "rec": 1.0,
           "rel": 0.9,
           "selected": true,
@@ -2802,7 +2744,7 @@
         {
           "display": "Python",
           "filter": "status=superseded",
-          "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "hard_filters": {
@@ -2829,16 +2771,12 @@
           "pref.likes"
         ],
         "n_terms": 3,
-        "terms": [
-          "favorit",
-          "program",
-          "languag"
-        ]
+        "terms": []
       },
       "selected": [
         {
           "alias": "m1",
-          "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08"
+          "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C"
         }
       ],
       "turn_index": 6
@@ -2847,7 +2785,7 @@
   "retrieved": [
     {
       "alias": "m1",
-      "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+      "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
       "text": "User's favorite programming language is Rust."
     }
   ],
@@ -2864,7 +2802,7 @@
           "duplicate": false,
           "importance": 0.75,
           "label": "favorite programming language = Python",
-          "memory_id": "mem_01M4BRPRV2THS91NN9PXXPW5RK",
+          "memory_id": "mem_01M4BV3AFH11AQ3KMH0911R2DZ",
           "reason": "slot user|pref.favorite_programming_language: new value Python",
           "result": "INSERT"
         }
@@ -2881,7 +2819,7 @@
       ],
       "session": "s1",
       "text_safe": "My favorite programming language is Python.",
-      "trace_id": "trc_01M4BRPRRVZZRGFJ7Q6F3NRGDW",
+      "trace_id": "trc_01M4BV3AE7PFE58HTRK9W61XDV",
       "turn_index": 0
     },
     {
@@ -2894,10 +2832,10 @@
           "duplicate": false,
           "importance": 0.75,
           "label": "favorite programming language = Rust",
-          "memory_id": "mem_01M4BRPT7XGTE9X0ER1W1GGW08",
+          "memory_id": "mem_01M4BV3CVBNGC0HWNQ7TRSVJ6C",
           "reason": "slot user|pref.favorite_programming_language: Rust replaces Python (0.90 ≥ 0.80)",
           "result": "SUPERSEDE",
-          "supersedes": "mem_01M4BRPRV2THS91NN9PXXPW5RK"
+          "supersedes": "mem_01M4BV3AFH11AQ3KMH0911R2DZ"
         }
       ],
       "path": [
@@ -2914,7 +2852,7 @@
       ],
       "session": "s1",
       "text_safe": "Actually, my favorite programming language is Rust.",
-      "trace_id": "trc_01M4BRPT6YEMD90CZH6VTYP62X",
+      "trace_id": "trc_01M4BV3CTCBR52BRB279TCK0BY",
       "turn_index": 1
     },
     {
@@ -2943,7 +2881,7 @@
       "probe": "same_session",
       "session": "s1",
       "text_safe": "What's my favorite programming language?",
-      "trace_id": "trc_01M4BRPVAVZP58X3ESA9V8M5VG",
+      "trace_id": "trc_01M4BV3DXS9YRZ3VY6KCWEJRWF",
       "turn_index": 2
     },
     {
@@ -2980,7 +2918,7 @@
       "probe": "new_conversation",
       "session": "s2",
       "text_safe": "What's my favorite programming language?",
-      "trace_id": "trc_01M4BRPX0B5B45V6GXK7K2EK6Q",
+      "trace_id": "trc_01M4BV3FJCBYZKHTF86MHHCF7X",
       "turn_index": 4
     },
     {
@@ -3017,7 +2955,7 @@
       "probe": "after_restart",
       "session": "s3",
       "text_safe": "What's my favorite programming language?",
-      "trace_id": "trc_01M4BRPZKCWABZS7785S2R8WKW",
+      "trace_id": "trc_01M4BV3J4R21Z2RGDF6PH7CYMQ",
       "turn_index": 6
     }
   ]

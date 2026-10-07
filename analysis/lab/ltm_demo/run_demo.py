@@ -244,6 +244,8 @@ def expectation(sc: Scenario, mode: str, canary: str, sink: str) -> str:
         return "observed"
     if sc.name == "privacy" and canary == "SECRET:API_KEY":
         return "zero"
+    if sc.name == "selective" and sink in ("ltm.db", "ltm.db-wal", "sql:memory_events"):
+        return "debug_retained_7d"  # ignored clause text in dev-mode events only (D25), cleared by the 7-day sweep
     if sink.startswith("ltm_block") or sink in LTM_SINKS_ZERO:
         if sc.name == "conflict" and sink in ("ltm.db", "ltm.db-wal", "sql:memories_fts*", "sql:memory_events"):
             return "retained_superseded"  # superseded content kept 30 d at rest, never retrievable (D11)

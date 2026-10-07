@@ -238,6 +238,14 @@ def grounded(c: Candidate, source: str) -> bool:
     return len(v) == 0 or len(v & set(src.split())) / len(v) >= GROUNDING_MIN_COVERAGE
 
 
+def text_grounded(text: str, source: str) -> bool:
+    """B4: content tokens of a custom candidate's sentence (minus the 'user' subject) must be covered by the source."""
+    ignore = {vocab.stem(w) for w in vocab.STOPWORDS} | {"user", "user's"}
+    toks = set(vocab.normalise(text).split()) - ignore
+    src = set(vocab.normalise(source).split())
+    return len(toks) == 0 or len(toks & src) / len(toks) >= GROUNDING_MIN_COVERAGE
+
+
 _ENUMS = {
     "memory_type": {"profile", "preference", "constraint", "relationship", "project"},
     "durability": {d.value for d in Durability},
@@ -263,6 +271,9 @@ def validate(candidates: Sequence[Candidate], source_text: str) -> Tuple[List[Ca
             continue
         if not grounded(c, source_text):
             dropped.append((c, "UNGROUNDED"))
+            continue
+        if pred.startswith("pref.custom:") and not text_grounded(c.text, source_text):
+            dropped.append((c, "UNGROUNDED"))  # B4: custom free text is stored verbatim, so it must be grounded too
             continue
         kept.append(c)
         if len(kept) >= MAX_CANDIDATES_PER_TURN:

@@ -13,6 +13,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import sqlite3
 import threading
 from contextlib import contextmanager
@@ -129,6 +130,7 @@ CREATE INDEX IF NOT EXISTS ix_events_memory ON memory_events(memory_id);
 FTS_SECURE_DELETE_MIN = (3, 42, 0)
 RETRIEVABLE = ("active", "contested")
 PURGE_AFTER_DAYS = {"superseded": 30, "expired": 7}  # deep dive §13
+EVENT_DEV_RETENTION_DAYS = 7  # deep dive §24: "a retention of 7 days for events in dev"
 
 _MEMORY_COLUMNS = (
     "id", "user_id", "memory_type", "subject", "predicate", "slot_key", "cardinality", "value_json", "value_hmac",
@@ -414,6 +416,39 @@ class MemoryStore:
                 ids.add(eid)
         return sorted(ids)
 
+    @staticmethod
+    def _value_needles(row: Dict[str, Any]) -> List[str]:
+        """Every surface form of a memory's value that a debug event could carry: canonical text, display phrase,
+        the canonical value (HH:MM, slug) and the entity name (review M2)."""
+        from . import vocab
+
+        out = [row.get("canonical_text") or ""]
+        out.append(vocab.display_value(row["predicate"], row.get("value_json")) or "")
+        try:
+            v = json.loads(row["value_json"]) if row.get("value_json") else None
+        except ValueError:
+            v = None
+        if isinstance(v, dict):
+            for x in v.values():
+                for t in (x if isinstance(x, list) else [x]):
+                    if isinstance(t, str) and re.fullmatch(r"\d{2}:\d{2}", t):
+                        out += [t, vocab.fmt_time(t)]
+                    elif isinstance(t, str):
+                        out.append(t)
+        elif isinstance(v, str):
+            out += [v, v.replace("-", " ")]
+        return sorted({n.strip() for n in out if n and len(n.strip()) >= 3}, key=len, reverse=True)
+
+    def _value_event_ids(self, conn: sqlite3.Connection, scope: MemoryScope, rows: Sequence[Dict[str, Any]]) -> List[str]:
+        ids: List[str] = []
+        ref = self.user_ref(scope)
+        for row in rows:
+            for needle in self._value_needles(row):
+                ids += [r[0] for r in conn.execute(
+                    "SELECT event_id FROM memory_events WHERE user_ref=? AND "
+                    "instr(lower(COALESCE(safe_text,'') || ' ' || detail_json), lower(?)) > 0", (ref, needle))]
+        return ids
+
     def scrub_job_events(self, scope: MemoryScope, trace_id: str, candidate_id: str) -> None:
         """A tombstoned (fence-dropped) job must not leave the forgotten text behind in its own events."""
         with self.write() as conn:
@@ -450,10 +485,12 @@ class MemoryStore:
         with self.write() as conn:
             self.ensure_user(conn, scope)
             rows = conn.execute(
-                "SELECT id, value_hmac FROM memories WHERE user_id=? AND slot_key=? AND status<>'deleted'",
+                "SELECT id, value_hmac, predicate, value_json, canonical_text FROM memories"
+                " WHERE user_id=? AND slot_key=? AND status<>'deleted'",
                 (scope.user_id, slot_key),
             ).fetchall()
-            self._scrub_event_rows(conn, self._linked_event_ids(conn, scope, [r["id"] for r in rows]))
+            linked = self._linked_event_ids(conn, scope, [r["id"] for r in rows])
+            self._scrub_event_rows(conn, sorted(set(linked) | set(self._value_event_ids(conn, scope, [dict(r) for r in rows]))))
             for r in rows:
                 conn.execute(
                     "UPDATE memories SET status='deleted', canonical_text=NULL, value_json=NULL,"
@@ -582,6 +619,18 @@ class MemoryStore:
                         "UPDATE memories SET canonical_text=NULL, value_json=NULL WHERE id=?", (mem_id,)
                     )
                     conn.execute("UPDATE memory_events SET safe_text=NULL WHERE memory_id=?", (mem_id,))
+                    ev = conn.execute("SELECT DISTINCT user_ref, trace_id, candidate_id FROM memory_events"
+                                      " WHERE memory_id=? AND candidate_id IS NOT NULL", (mem_id,)).fetchall()
+                    for ref, trace_id, cand in ev:
+                        self._scrub_event_rows(conn, [r[0] for r in conn.execute(
+                            "SELECT event_id FROM memory_events WHERE user_ref=? AND trace_id=? AND candidate_id=?",
+                            (ref, trace_id, cand))])
+            # Deep dive §24: dev-mode event content (safe_text + MEMORY_SAFE dev keys) is retained 7 days.
+            cutoff = to_iso(now_dt - timedelta(days=EVENT_DEV_RETENTION_DAYS))
+            old_events = [r[0] for r in conn.execute(
+                "SELECT event_id FROM memory_events WHERE ts <= ? AND (safe_text IS NOT NULL OR detail_json LIKE '%\"display\"%'"
+                " OR detail_json LIKE '%\"reason\"%' OR detail_json LIKE '%\"label_value\"%')", (cutoff,))]
+            self._scrub_event_rows(conn, old_events)
         if on_expire:
             for mem_id in expired:
                 on_expire(mem_id)

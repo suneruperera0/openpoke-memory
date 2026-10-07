@@ -137,8 +137,15 @@ def _placeholder_spans(text: str) -> List[Tuple[int, int]]:
     return [m.span() for m in PLACEHOLDER_RX.finditer(text)] + [m.span() for m in TYPED_LABEL_RX.finditer(text)]
 
 
-def _overlaps_any(start: int, end: int, spans: Iterable[Tuple[int, int]]) -> bool:
-    return any(start < e and s < end for s, e in spans)
+def _inside_protected(text: str, start: int, end: int, spans: Iterable[Tuple[int, int]]) -> bool:
+    """True only when the finding's core (trimmed of surrounding punctuation/quotes) lies entirely inside one
+    placeholder/label span. Mere overlap is not enough: "[X]hunter2pass" or "SECRET:API_KEY=hunter2pass99" must still
+    be detected (review M3)."""
+    while start < end and not text[start].isalnum():
+        start += 1
+    while end > start and not text[end - 1].isalnum():
+        end -= 1
+    return any(s <= start and end <= e for s, e in spans)
 
 
 def detect(text: str) -> List[Finding]:
@@ -165,7 +172,7 @@ def detect(text: str) -> List[Finding]:
                 continue
             if det.near and not keyword_within(text, (start, end), det.near):
                 continue
-            if _overlaps_any(start, end, protected):
+            if _inside_protected(text, start, end, protected):
                 continue
             hits.append(Finding(det.kind, det.cls, start, end))
     return resolve_overlaps(hits)
@@ -213,7 +220,7 @@ def high_entropy_tokens(text: str) -> List[Finding]:
         s = tok.group()
         if (char_classes(s) >= 3 and shannon_bits_per_char(s) >= 3.5 and not looks_like_url_path(s)
                 and not is_system_id(s)):
-            if not _overlaps_any(tok.start(), tok.end(), protected):
+            if not _inside_protected(text, tok.start(), tok.end(), protected):
                 out.append(Finding("HIGH_ENTROPY", "SECRET", tok.start(), tok.end()))
     return out
 

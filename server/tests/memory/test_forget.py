@@ -185,3 +185,111 @@ class TestByteCanary(ServiceCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestReviewM1FalseForget(ServiceCase):
+    """Review M1 / LTM_BLOCKERS.md B3: ordinary sentences containing "forget" must not delete or tombstone."""
+
+    async def test_i_forget_question_keeps_preference(self):
+        user_turn(self.svc, "I prefer meetings after 10 AM.")
+        await self.svc.await_idle()
+        p = user_turn(self.svc, "I forget what time my meeting with Dana is, can you check my calendar?")
+        await self.svc.await_idle()
+        self.assertEqual(len(self.store.rows_in_slot(self.scope, MEET, ["active"])), 1)
+        self.assertEqual(self.store.tombstones(self.scope), [])
+        self.assertFalse(any("Deleted" in n or "will not be remembered" in n for n in p.notices))
+
+    async def test_i_always_forget_plus_fact_is_stored(self):
+        p = user_turn(self.svc, "I always forget my schedule. I prefer meetings after 2 PM.")
+        await self.svc.await_idle()
+        self.assertEqual([r["canonical_text"] for r in self.store.rows_in_slot(self.scope, MEET, ["active"])],
+                         ["User prefers meetings after 2 PM."])
+        self.assertEqual(self.store.tombstones(self.scope), [])
+        self.assertEqual(self.events(p.turn.trace_id, "fence_drop"), [])
+
+    async def test_explicit_forget_still_deletes(self):
+        user_turn(self.svc, "I prefer meetings after 10 AM.")
+        await self.svc.await_idle()
+        p = user_turn(self.svc, "Forget my meeting preference.")
+        self.assertTrue(p.is_forget_only)
+        self.assertEqual([r["status"] for r in self.store.rows_in_slot(self.scope, MEET)], ["deleted"])
+
+    async def test_forget_clause_does_not_tombstone_new_fact_in_same_message(self):
+        user_turn(self.svc, "I prefer meetings after 10 AM.")
+        await self.svc.await_idle()
+        p = user_turn(self.svc, "Forget my meeting preference. I prefer meetings after 2 PM.")
+        self.assertFalse(p.is_forget_only)
+        await self.svc.await_idle()
+        rows = self.store.rows_in_slot(self.scope, MEET)
+        self.assertEqual(sorted((r["status"], r["canonical_text"]) for r in rows),
+                         [("active", "User prefers meetings after 2 PM."), ("deleted", None)])
+        self.assertEqual(self.events(p.turn.trace_id, "fence_drop"), [])
+
+    def test_grammar_negatives_and_positives(self):
+        for text in ("I forget what time my meeting with Dana is", "I always forget my schedule.",
+                     "I often forgot my password", "I don't remember my dentist's name", "Forget it.",
+                     "Don't forget to email Bob", "don't forget my dentist appointment", "Delete the email from Bob"):
+            self.assertIsNone(forget.detect(text), text)
+        for text, kind in (("Forget my meeting preference.", "targeted"), ("Please forget my manager.", "targeted"),
+                           ("Forget what I said about email.", "targeted"),
+                           ("I want you to forget my meeting preference.", "targeted"),
+                           ("Please delete what you remember about my manager", "targeted"),
+                           ("Forget everything about me", "all")):
+            fr = forget.detect(text)
+            self.assertIsNotNone(fr, text)
+            self.assertEqual(fr.kind, kind, text)
+
+
+class TestReviewM2DebugEventResidue(ServiceCase):
+    """Review M2: with debug events on, forgotten values and ignored clause text must not linger in ltm.db."""
+
+    def event_text(self) -> str:
+        with self.store.read() as conn:
+            return "\n".join(f"{r[0] or ''} {r[1]}" for r in conn.execute(
+                "SELECT safe_text, detail_json FROM memory_events")).lower()
+
+    async def test_forgotten_value_tokens_absent(self):
+        user_turn(self.svc, "I prefer meetings after 10 AM.")
+        await self.svc.await_idle()
+        user_turn(self.svc, "When should I schedule a meeting? Is 10 AM ok?")
+        await self.svc.await_idle()
+        self.assertIn("10 am", self.event_text())  # sanity: the value really was in debug events
+        user_turn(self.svc, "Forget my meeting preference.")
+        await self.svc.await_idle()
+        blob = ltm_bytes(self.store)
+        for canary in CANARIES + [b'"10:00"', b"10 AM"]:
+            self.assertNotIn(canary, blob, canary)
+        text = self.event_text()  # bare HH:MM checked in content columns only (timestamps contain it legitimately)
+        for needle in ("10:00", "10 am", "after 10"):
+            self.assertNotIn(needle, text, needle)
+
+    async def test_forgotten_entity_absent_case_insensitive(self):
+        user_turn(self.svc, "My favorite programming language is Haskell.")
+        await self.svc.await_idle()
+        user_turn(self.svc, "Is Haskell good for compilers?")
+        await self.svc.await_idle()
+        user_turn(self.svc, "Forget my favorite programming language.")
+        await self.svc.await_idle()
+        self.assertNotIn(b"haskell", ltm_bytes(self.store).lower())
+
+    async def test_query_terms_not_stored_in_events(self):
+        p = user_turn(self.svc, "What's my favorite programming language, Haskell?")
+        (q,) = self.events(p.turn.trace_id, "retrieve.query")
+        self.assertNotIn("terms", q["detail"])
+        self.assertNotIn("entities", q["detail"])
+        self.assertEqual(q["detail"]["n_terms"] > 0, True)
+
+    async def test_ignored_clause_text_cleared_by_7_day_retention(self):
+        from datetime import datetime, timedelta, timezone
+
+        user_turn(self.svc, "I prefer meetings after 10 AM. I'm eating a turkey sandwich right now.")
+        await self.svc.await_idle()
+        self.assertIn("turkey", self.event_text())  # retained for the debug view (D25), not as a memory
+        self.assertEqual([r["canonical_text"] for r in self.store.all_rows(self.scope)],
+                         ["User prefers meetings after 10 AM."])
+        self.store.sweep(now=datetime.now(timezone.utc) + timedelta(days=6))
+        self.assertIn("turkey", self.event_text())
+        self.store.sweep(now=datetime.now(timezone.utc) + timedelta(days=8))
+        self.assertNotIn("turkey", self.event_text())
+        self.assertNotIn(b"turkey", ltm_bytes(self.store))
+        self.assertEqual(len(self.store.rows_in_slot(self.scope, MEET, ["active"])), 1)  # memory itself unaffected

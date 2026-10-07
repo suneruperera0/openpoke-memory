@@ -123,3 +123,40 @@ class TestFiltersAndShape(RetrievalCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestReviewM5ContestedSiblingFilters(RetrievalCase):
+    """Review M5: the active sibling of a contested row must pass the same hard filters as any candidate."""
+
+    def setUp(self):
+        super().setUp()
+        (self.active,) = commit_text(self.store, self.scope, "I prefer meetings after 10 AM.", self.now - timedelta(days=1))
+        (self.contested,) = commit_text(self.store, self.scope, "I think maybe afternoons are better for meetings?",
+                                        self.now, n=2)
+        self.assertEqual(self.contested.kind.value, "CONTEST")
+
+    def set_active(self, column, value):
+        with self.store.write() as conn:
+            conn.execute(f"UPDATE memories SET {column}=? WHERE id=?", (value, self.active.memory_id))
+
+    def test_expired_active_sibling_never_rendered(self):
+        self.set_active("expires_at", "2000-01-01T00:00:00.000Z")
+        block, items, _ = self.probe("When should I schedule a meeting?")
+        self.assertNotIn("after 10 AM", block)
+        self.assertNotIn(self.active.memory_id, [it.row["id"] for it in items])
+        self.assertTrue(all(it.contested_sibling is None for it in items))
+
+    def test_high_sensitivity_sibling_never_rendered_on_agent_message_turn(self):
+        self.set_active("sensitivity", "high")
+        block, items, t = self.probe("Calendar update: new meeting request for tomorrow", trace_id="trc_agent",
+                                     source_kind="agent_message")
+        self.assertEqual(t["retrieval"]["hard_filters"]["sensitivity"], ["low"])
+        self.assertNotIn("after 10 AM", block)
+        self.assertNotIn(self.active.memory_id, [it.row["id"] for it in items])
+
+    def test_allowed_contested_pair_still_renders_as_one_item(self):
+        block, items, _ = self.probe("When should I schedule a meeting?")
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0].row["id"], self.active.memory_id)
+        self.assertIn('Unclear meeting time preference: "after 10 AM"', block)
+        self.assertIn('"in the afternoon" (said tentatively', block)

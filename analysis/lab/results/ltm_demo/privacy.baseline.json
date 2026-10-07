@@ -475,14 +475,14 @@
       "OPENPOKE_LTM_EXTRACTOR": null,
       "OPENPOKE_LTM_TEST_HOOKS": false
     },
-    "generated_at": "2026-10-07T18:06:22Z",
-    "git_commit": "44387cf4bae61ec4663ad83f8abd8e342375586b",
+    "generated_at": "2026-10-07T18:48:13Z",
+    "git_commit": "a989a16d3dc593cd281736293c2f0600258d58ca",
     "git_dirty": true,
     "headline_probe": "same_session",
     "llm": "mock",
     "policy": null,
     "python": "3.13.5",
-    "run_id": "run_01M4BRPE9YRMN37YHD6AGSN3AT",
+    "run_id": "run_01M4BV30HQ978V2V5VCMKSSWG8",
     "sqlite": "3.53.4"
   },
   "mode": "baseline",

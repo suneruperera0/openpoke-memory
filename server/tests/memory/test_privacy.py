@@ -267,3 +267,25 @@ class TestBlockerB2(unittest.TestCase):
             self.assertIn("SECRET:API_KEY", ev["detail"]["detectors"])
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
+
+
+class TestReviewM3ProtectedSpanBypass(unittest.TestCase):
+    """Review M3: a placeholder/label-shaped prefix must not shield a real credential that follows it."""
+
+    CASES = [("my password is [X]hunter2pass", "hunter2pass"),
+             ("SECRET:API_KEY=hunter2pass99", "hunter2pass99"),
+             ("Use passphrase: [SECRET:X]realsecret123", "realsecret123")]
+
+    def test_ingress_scrubs_secret_after_protected_prefix(self):
+        for raw, secret in self.CASES:
+            out, findings = privacy.ingress_scrub(raw)
+            self.assertNotIn(secret, out, raw)
+            self.assertIn("[SECRET:", out)
+            self.assertTrue(findings)
+            self.assertEqual(privacy.ingress_scrub(out), (out, []))  # still idempotent
+            self.assertNotIn(secret, privacy.scrub(out)[0].llm_safe)
+
+    def test_exact_placeholders_and_labels_still_protected(self):
+        for text in ("My test API key is [SECRET:API_KEY].", '"canaries": ["SECRET:API_KEY"]',
+                     "card [CARD] and [GOV_ID]", '"detectors": ["SECRET:OTP"]'):
+            self.assertEqual(privacy.ingress_scrub(text), (text, []), text)

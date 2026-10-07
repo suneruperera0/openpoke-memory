@@ -219,23 +219,28 @@ def candidates(conn: sqlite3.Connection, scope: MemoryScope, q: Query, f: Filter
         counts["constraint"] += 1
     for mid in [k for k, c in out.items() if not _on_topic(c.row, q)]:
         del out[mid]
-    _attach_contested_siblings(conn, scope, out)
+    _attach_contested_siblings(conn, scope, out, q, f, now_iso)
     counts["total"] = len(out)
     return out, counts
 
 
-def _attach_contested_siblings(conn: sqlite3.Connection, scope: MemoryScope, out: Dict[str, Cand]) -> None:
-    """A contested row joins its active sibling as one item (rendered as an explicit conflict)."""
+def _attach_contested_siblings(conn: sqlite3.Connection, scope: MemoryScope, out: Dict[str, Cand], q: Query,
+                               f: Filters, now_iso: str) -> None:
+    """A contested row joins its active sibling as one item (rendered as an explicit conflict). The sibling must pass
+    the SAME hard filters and on-topic check as any candidate (D9; review M5). If it does not, it is never rendered;
+    the contested row, which passed the filters itself, stays a standalone candidate."""
     for mid in [k for k, c in out.items() if c.row["status"] == "contested"]:
-        c = out.pop(mid)
+        c = out[mid]
         active = next((a for a in out.values() if a.row["id"] == c.row["contests_id"]), None)
         if active is None:
-            row = conn.execute("SELECT * FROM memories WHERE id=? AND user_id=? AND status='active'",
-                               (c.row["contests_id"], scope.user_id)).fetchone()
-            if row is None:
-                continue
+            where, params = _where(f, now_iso)
+            row = conn.execute(f"SELECT m.* FROM memories m WHERE m.id=? AND m.user_id=? AND m.status='active' AND {where}",
+                               [c.row["contests_id"], scope.user_id, *params]).fetchone()
+            if row is None or not _on_topic(dict(row), q):
+                continue  # sibling not allowed in this context: keep the contested row on its own
             active = Cand(dict(row), slot_match=c.slot_match, bm25=c.bm25, generators=list(c.generators))
             out[active.row["id"]] = active
+        del out[mid]
         active.contested_sibling = c.row
 
 
@@ -328,9 +333,9 @@ class Retriever:
         emit = lambda *a, **k: self.sink.emit(scope, trace_id, *a, **k)  # noqa: E731
         q = build_query(llm_safe_text)
         f = allowed_filters(source_kind, q)
+        # Counts + predicate families only (deep dive §24 table): raw query terms/entities would retain user values.
         emit("retrieve.query", detail={"n_terms": len(q.terms), "families": q.families, "n_entities": len(q.entities),
-                                       "hard_filters": f.as_dict(scope)},
-             dev_detail={"terms": q.terms, "entities": q.entities})
+                                       "hard_filters": f.as_dict(scope)})
         with self.store.read() as conn:
             cands, counts = candidates(conn, scope, q, f, now_iso)
             if self.debug_events:

@@ -167,6 +167,23 @@ class TestFlagOn(IntegrationCase):
         self.assertIn("User prefers concise emails.", later)
         self.assertTrue(memory_pkg.DATA_DIR.exists() == self.real_memory_dir_existed)  # temp store, not the real dir
 
+    async def test_review_m3_prefixed_credentials_scrubbed_at_every_boundary(self):
+        from ._util import ltm_bytes
+
+        cases = [("my password is [X]hunter2pass", "hunter2pass"),
+                 ("SECRET:API_KEY=hunter2pass99", "hunter2pass99"),
+                 ("Use passphrase: [SECRET:X]realsecret123", "realsecret123")]
+        for raw, _ in cases:
+            await self.send(raw)
+        sinks = {"conversation+working memory": self.files(),
+                 "interaction model": repr([c["messages"] for c in self.llm.calls]),
+                 "extractor input": repr(self.svc.extractor.calls),
+                 "ltm.db*": ltm_bytes(self.store).decode("latin-1")}
+        for _, secret in cases:
+            for name, blob in sinks.items():
+                self.assertNotIn(secret, blob, f"{secret} in {name}")
+        self.assertEqual(len(self.svc.extractor.calls), 3)
+
     async def test_i2_record_reply_and_agent_messages_scrubbed(self):
         self.conv.record_reply(f"Your key is {SECRET}")
         result = await self.runtime().handle_agent_message("Use code 771204 to sign in.")

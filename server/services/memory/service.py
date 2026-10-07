@@ -12,7 +12,7 @@ import re
 import threading
 import time
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 from . import forget as forget_mod
@@ -28,6 +28,7 @@ from .models import (
     PolicyDecision,
     ScrubbedText,
     TurnRef,
+    from_iso,
     new_id,
     to_iso,
     utcnow,
@@ -48,6 +49,10 @@ class PreparedTurn:
     notices: List[str] = field(default_factory=list)
     is_forget_only: bool = False
     kind: str = "setup"
+    # B3: when a message mixes a forget clause with other clauses, only the other clauses are ingested, and they are
+    # treated as stated just after the forget (so this turn's own tombstone does not fence them).
+    ingest_text: Optional[str] = None
+    ingest_turn: Optional[TurnRef] = None
 
 
 @dataclass
@@ -106,7 +111,7 @@ class MemoryService:
     def _prepare(self, text: str, turn: TurnRef, ingress_findings: Sequence[Finding]) -> PreparedTurn:
         scope, trace = turn.scope, turn.trace_id
         emit = lambda *a, **k: self.sink.emit(scope, trace, *a, **k)  # noqa: E731
-        fr = forget_mod.detect(text) if turn.source_kind == "user_message" else None
+        fr = forget_mod.detect(privacy.scrub(text)[0].llm_safe) if turn.source_kind == "user_message" else None
         kind = "forget" if fr else ("probe" if text.rstrip().endswith("?") or _PROBE_RX.match(text.strip()) else "setup")
         emit("ingest", detail={"source_kind": turn.source_kind, "chars": len(text), "turn_id": turn.turn_id,
                                "kind": kind, "observed_at": turn.observed_iso, "epoch": turn.epoch})
@@ -126,15 +131,22 @@ class MemoryService:
             notices.append("A secret-like or ID-like value in the latest message was not saved to long-term memory.")
 
         is_forget_only = False
+        ingest_text: Optional[str] = None
+        ingest_turn: Optional[TurnRef] = None
         if fr:
-            emit("forget.detect", decision=fr.kind.upper(), detail={"kind": fr.kind})
+            emit("forget.detect", decision=fr.kind.upper(), detail={"kind": fr.kind, "clauses": fr.clause_indices})
             result = forget_mod.apply(self.store, self.sink, scope, fr, trace)
             notices.append(result.notice)
-            clauses = split_clauses(scrubbed.llm_safe)
-            is_forget_only = all(forget_mod.detect(c) or c.rstrip().endswith("?") for c in clauses)
+            rest = [c for i, c in enumerate(split_clauses(scrubbed.llm_safe)) if i not in fr.clause_indices]
+            is_forget_only = all(c.rstrip().endswith("?") for c in rest)
+            if not is_forget_only:
+                ingest_text = " ".join(rest)
+                if result.tombstone_at:
+                    after = max(turn.observed_at, from_iso(result.tombstone_at) + timedelta(milliseconds=1))
+                    ingest_turn = TurnRef(turn.trace_id, turn.turn_id, turn.scope, after, turn.epoch, turn.source_kind)
 
         block, _items = self.retriever.retrieve_block(scope, scrubbed.llm_safe, turn.source_kind, trace)
-        return PreparedTurn(turn, scrubbed, block, notices, is_forget_only, kind)
+        return PreparedTurn(turn, scrubbed, block, notices, is_forget_only, kind, ingest_text, ingest_turn)
 
     # ------------------------------------------------------------------ async ingest
 
@@ -148,7 +160,8 @@ class MemoryService:
         except RuntimeError:
             return
         prev = privacy.scrub(privacy.ingress_scrub(prev_reply or "")[0])[0].llm_safe[:PREV_REPLY_MAX]
-        job = IngestJob(prepared.turn, prepared.scrubbed.llm_safe, prev)
+        job = IngestJob(prepared.ingest_turn or prepared.turn,
+                        prepared.ingest_text if prepared.ingest_text is not None else prepared.scrubbed.llm_safe, prev)
         self._spawn(loop, job, 0)
         with self._state:
             dup_ms, self._dup_delay_ms = self._dup_delay_ms, None
@@ -211,17 +224,22 @@ class MemoryService:
                 emit("extract.clause", decision="NO_CANDIDATE", reason_codes=[rep["reason"]], safe_text=rep["clause"],
                      detail={"clause_index": rep["clause_index"], "reason": rep["reason"]})
         for c, why in dropped:
+            # Dropped candidates' free text is not trusted (B4): show the template sentence for known predicates only.
+            known = vocab.is_storable(c.predicate) and not c.predicate.startswith("pref.custom:")
             emit("validate", candidate_id=c.candidate_id, decision="IGNORE", reason_codes=[why],
-                 detail={"reason": why}, safe_text=c.text)
+                 detail={"reason": why},
+                 safe_text=policy.canonical_text(c, policy.assign_slot(c)) if known else None)
 
         for c in kept:
             verdict = privacy.classify(c, rerender=lambda c: vocab.render(c.predicate, c.value, c.object_entity))
             lbl = vocab.label(c.predicate)
+            # Events show the same deterministic text that would be stored (B4), never extractor free text.
+            shown = policy.canonical_text(c, policy.assign_slot(c))
             emit("privacy.classify", candidate_id=c.candidate_id, decision=verdict.action,
                  reason_codes=verdict.reasons,
                  detail={"sensitivity": verdict.sensitivity, "categories": verdict.categories,
                          "detectors": verdict.detector_types, "label": lbl},
-                 safe_text=c.text)
+                 safe_text=shown)
             d = policy.decide(c, verdict, turn.source_kind,
                               value_hmac=lambda k, x: self.store.value_hmac(scope, k, x),
                               source_turn_id=turn.turn_id, observed_at=turn.observed_at,
@@ -233,7 +251,7 @@ class MemoryService:
                  detail={"label": lbl, "importance": d.importance, "importance_breakdown": d.importance_breakdown,
                          "confidence": d.confidence, "slot_key": d.slot.slot_key if d.slot else None,
                          "scores": {"importance": d.importance, "confidence": d.confidence}},
-                 safe_text=c.text,
+                 safe_text=shown,
                  dev_detail={"label_value": f"{lbl} = {value_disp}"} if value_disp else None)
             if d.kind != PolicyDecision.STORE or d.record is None:
                 continue

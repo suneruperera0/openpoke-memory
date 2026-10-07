@@ -369,7 +369,11 @@ SELECTIVE = Scenario(
 MEET_SLOT = "user|pref.meeting_time"
 FORGET_CANARIES = {"FORGOTTEN:meeting_pref_text": "User prefers meetings after 10 AM",
                    "FORGOTTEN:meeting_pref_value": '{"after":"10:00"}',
-                   "FORGOTTEN:meeting_pref_value_json": '{"after": "10:00"}'}
+                   "FORGOTTEN:meeting_pref_value_json": '{"after": "10:00"}',
+                   # review M2: normalised value tokens, not only whole strings ('"10:00"' is quoted so that event
+                   # timestamps such as T10:00:12Z cannot collide)
+                   "FORGOTTEN:meeting_pref_hhmm": '"10:00"',
+                   "FORGOTTEN:meeting_pref_phrase": "after 10 AM"}
 
 
 def forget_ltm(doc, ctx):
