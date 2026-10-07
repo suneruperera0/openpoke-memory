@@ -31,6 +31,8 @@ def classify(body: dict) -> str:
     msgs = body.get("messages") or []
     system = msgs[0]["content"] if msgs and msgs[0].get("role") == "system" else ""
     tools = [t["function"]["name"] for t in body.get("tools") or []]
+    if "You extract durable facts about the USER" in system:  # LTM LLMExtractor (unique phrase in its prompt)
+        return "memory_extractor"
     if "memory curator" in system:
         return "summarizer"
     if "review incoming Gmail messages" in system:
@@ -138,7 +140,14 @@ def summarizer(body: dict) -> dict | None:
     return reply(text)
 
 
+def memory_extractor(body: dict) -> dict:
+    # Default: no candidates. Gates never depend on mock extraction quality (handoff C3); the captures prove what
+    # crossed the boundary.
+    return reply(json.dumps({"candidates": [], "ignored": []}))
+
+
 HANDLERS = {
+    "memory_extractor": memory_extractor,
     "interaction_agent": interaction_agent,
     "execution_agent": execution_agent,
     "search_subagent": search_subagent,

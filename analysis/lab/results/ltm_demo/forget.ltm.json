@@ -1,0 +1,2246 @@
+{
+  "assertions": [
+    {
+      "actual": [
+        {
+          "canonical_text": null,
+          "status": "deleted",
+          "value_json": null
+        }
+      ],
+      "evidence": {
+        "sql": "SELECT id, status, canonical_text, value_json FROM memories WHERE slot_key=?"
+      },
+      "expected": {
+        "canonical_text": null,
+        "status": "deleted",
+        "value_json": null
+      },
+      "id": "forget.row_deleted_content_null",
+      "name": "row status=deleted, canonical_text IS NULL, value_json IS NULL",
+      "passed": true
+    },
+    {
+      "actual": 0,
+      "evidence": {},
+      "expected": 0,
+      "id": "forget.fts_row_removed",
+      "name": "no memories_fts row for the deleted memory",
+      "passed": true
+    },
+    {
+      "actual": [
+        "slot",
+        "value"
+      ],
+      "evidence": {
+        "tombstones": [
+          {
+            "deleted_at": "2026-10-07T18:07:00.760Z",
+            "reason": "user_forget",
+            "scope": "value",
+            "slot_key": "user|pref.meeting_time"
+          },
+          {
+            "deleted_at": "2026-10-07T18:07:00.760Z",
+            "reason": "user_forget",
+            "scope": "slot",
+            "slot_key": "user|pref.meeting_time"
+          }
+        ]
+      },
+      "expected": [
+        "slot",
+        "value"
+      ],
+      "id": "forget.tombstone_written",
+      "name": "slot + value tombstones for user|pref.meeting_time",
+      "passed": true
+    },
+    {
+      "actual": [
+        "TOMBSTONED"
+      ],
+      "evidence": {
+        "refs": {
+          "job_observed_at": "2026-10-07T18:06:59.092Z",
+          "tombstone_at": "2026-10-07T18:07:00.760Z"
+        },
+        "turn_index": 1
+      },
+      "expected": "TOMBSTONED",
+      "id": "forget.stale_writer_fence_dropped",
+      "name": "the delayed duplicate writer hit the tombstone: fence_drop TOMBSTONED",
+      "passed": true
+    },
+    {
+      "actual": 1,
+      "evidence": {
+        "after_duplicate_turn": 4,
+        "after_forget_turn": 2
+      },
+      "expected": 1,
+      "id": "forget.slot_row_count_unchanged_after_drop",
+      "name": "slot row count unchanged by the stale write",
+      "passed": true
+    },
+    {
+      "actual": [],
+      "evidence": {},
+      "expected": [],
+      "id": "forget.retrieval_empty_all_probes",
+      "name": "no LTM block and no selected memory in any probe",
+      "passed": true
+    },
+    {
+      "actual": {
+        "ltm.db:FORGOTTEN:meeting_pref_text": 0,
+        "ltm.db:FORGOTTEN:meeting_pref_value": 0,
+        "ltm.db:FORGOTTEN:meeting_pref_value_json": 0
+      },
+      "evidence": {
+        "scope": "ltm.db* only; the utterance remains in poke_conversation.log (design §14.5)"
+      },
+      "expected": 0,
+      "id": "forget.bytes_absent_ltm_db",
+      "name": "forgotten text/value bytes absent from ltm.db, -wal, -shm (after checkpoint)",
+      "passed": true
+    },
+    {
+      "actual": [],
+      "evidence": {
+        "schema": "openpoke.ltm.demo_trace.v1"
+      },
+      "expected": [],
+      "id": "contract.valid",
+      "name": "validate_trace() passes",
+      "passed": true
+    },
+    {
+      "actual": [],
+      "evidence": {
+        "method": "ingress detectors over the serialised file (§24.1)"
+      },
+      "expected": [],
+      "id": "contract.leak_free",
+      "name": "no prohibited-class pattern anywhere in this file",
+      "passed": true
+    }
+  ],
+  "baseline_observations": [],
+  "canary_scan": {
+    "canaries": [
+      "FORGOTTEN:meeting_pref_text",
+      "FORGOTTEN:meeting_pref_value",
+      "FORGOTTEN:meeting_pref_value_json"
+    ],
+    "sinks": [
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "ltm.db"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-wal"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-shm"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "sql:memories_fts*"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "sql:memory_events"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "events_jsonl"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "n_captures": 0,
+        "sink": "llm:memory_extractor"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "by_design",
+        "hits": 0,
+        "n_captures": 8,
+        "sink": "llm:interaction_agent"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "ltm_block:same_session:3"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "ltm_block:new_conversation:6"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "file:poke_conversation.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "file:poke_working_memory.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "server_stdout"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_text",
+        "expected": "by_design",
+        "hits": 1,
+        "sink": "trace_file"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "ltm.db"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-wal"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-shm"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "sql:memories_fts*"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "sql:memory_events"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "events_jsonl"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "n_captures": 0,
+        "sink": "llm:memory_extractor"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "by_design",
+        "hits": 0,
+        "n_captures": 8,
+        "sink": "llm:interaction_agent"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "ltm_block:same_session:3"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "ltm_block:new_conversation:6"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "file:poke_conversation.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "file:poke_working_memory.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "server_stdout"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "trace_file"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "ltm.db"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-wal"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "ltm.db-shm"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "sql:memories_fts*"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "present": true,
+        "sink": "sql:memory_events"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "present": false,
+        "sink": "events_jsonl"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "n_captures": 0,
+        "sink": "llm:memory_extractor"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "by_design",
+        "hits": 0,
+        "n_captures": 8,
+        "sink": "llm:interaction_agent"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "ltm_block:same_session:3"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "ltm_block:new_conversation:6"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "file:poke_conversation.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "file:poke_working_memory.log"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "zero",
+        "hits": 0,
+        "sink": "server_stdout"
+      },
+      {
+        "canary": "FORGOTTEN:meeting_pref_value_json",
+        "expected": "by_design",
+        "hits": 0,
+        "sink": "trace_file"
+      }
+    ]
+  },
+  "flow_graph": {
+    "edges": [
+      [
+        "conversation",
+        "ingress_scrub"
+      ],
+      [
+        "ingress_scrub",
+        "privacy"
+      ],
+      [
+        "privacy",
+        "extract"
+      ],
+      [
+        "extract",
+        "policy"
+      ],
+      [
+        "policy",
+        "consolidate"
+      ],
+      [
+        "policy",
+        "ignore"
+      ],
+      [
+        "policy",
+        "reject"
+      ],
+      [
+        "consolidate",
+        "store"
+      ],
+      [
+        "consolidate",
+        "supersede"
+      ],
+      [
+        "consolidate",
+        "fence_drop"
+      ],
+      [
+        "store",
+        "retrieve"
+      ],
+      [
+        "retrieve",
+        "agent"
+      ],
+      [
+        "conversation",
+        "delete"
+      ]
+    ],
+    "lane": "ltm",
+    "nodes": [
+      "conversation",
+      "ingress_scrub",
+      "privacy",
+      "extract",
+      "policy",
+      "consolidate",
+      "store",
+      "ignore",
+      "reject",
+      "supersede",
+      "delete",
+      "fence_drop",
+      "retrieve",
+      "agent"
+    ]
+  },
+  "memory_state": [
+    {
+      "after_turn": 0,
+      "deleted": [],
+      "edges": [],
+      "memories": [],
+      "tombstones": []
+    },
+    {
+      "after_turn": 1,
+      "deleted": [],
+      "edges": [],
+      "memories": [
+        {
+          "canonical_text": "User prefers meetings after 10 AM.",
+          "confidence": 0.9,
+          "contests_id": null,
+          "deleted_at": null,
+          "display": "after 10 AM",
+          "expires_at": null,
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "importance": 0.8,
+          "memory_type": "preference",
+          "observed_at": "2026-10-07T18:06:59.092Z",
+          "slot_key": "user|pref.meeting_time",
+          "status": "active",
+          "status_history": [
+            {
+              "status": "active",
+              "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+              "ts": "2026-10-07T18:06:59.135Z",
+              "turn_index": 1
+            }
+          ],
+          "superseded_by_id": null,
+          "supersedes_id": null
+        }
+      ],
+      "tombstones": []
+    },
+    {
+      "after_turn": 2,
+      "deleted": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ],
+      "edges": [],
+      "memories": [
+        {
+          "canonical_text": null,
+          "confidence": 0.9,
+          "contests_id": null,
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "display": null,
+          "expires_at": null,
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "importance": 0.8,
+          "memory_type": "preference",
+          "observed_at": "2026-10-07T18:06:59.092Z",
+          "slot_key": "user|pref.meeting_time",
+          "status": "deleted",
+          "status_history": [
+            {
+              "status": "active",
+              "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+              "ts": "2026-10-07T18:06:59.135Z",
+              "turn_index": 1
+            },
+            {
+              "status": "deleted",
+              "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+              "ts": "2026-10-07T18:07:00.762Z",
+              "turn_index": 2
+            }
+          ],
+          "superseded_by_id": null,
+          "supersedes_id": null
+        }
+      ],
+      "tombstones": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "value",
+          "slot_key": "user|pref.meeting_time"
+        },
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "slot",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ]
+    },
+    {
+      "after_turn": 3,
+      "deleted": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ],
+      "edges": [],
+      "memories": [
+        {
+          "canonical_text": null,
+          "confidence": 0.9,
+          "contests_id": null,
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "display": null,
+          "expires_at": null,
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "importance": 0.8,
+          "memory_type": "preference",
+          "observed_at": "2026-10-07T18:06:59.092Z",
+          "slot_key": "user|pref.meeting_time",
+          "status": "deleted",
+          "status_history": [
+            {
+              "status": "active",
+              "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+              "ts": "2026-10-07T18:06:59.135Z",
+              "turn_index": 1
+            },
+            {
+              "status": "deleted",
+              "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+              "ts": "2026-10-07T18:07:00.762Z",
+              "turn_index": 2
+            }
+          ],
+          "superseded_by_id": null,
+          "supersedes_id": null
+        }
+      ],
+      "tombstones": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "value",
+          "slot_key": "user|pref.meeting_time"
+        },
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "slot",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ]
+    },
+    {
+      "after_turn": 4,
+      "deleted": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ],
+      "edges": [],
+      "memories": [
+        {
+          "canonical_text": null,
+          "confidence": 0.9,
+          "contests_id": null,
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "display": null,
+          "expires_at": null,
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "importance": 0.8,
+          "memory_type": "preference",
+          "observed_at": "2026-10-07T18:06:59.092Z",
+          "slot_key": "user|pref.meeting_time",
+          "status": "deleted",
+          "status_history": [
+            {
+              "status": "active",
+              "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+              "ts": "2026-10-07T18:06:59.135Z",
+              "turn_index": 1
+            },
+            {
+              "status": "deleted",
+              "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+              "ts": "2026-10-07T18:07:00.762Z",
+              "turn_index": 2
+            }
+          ],
+          "superseded_by_id": null,
+          "supersedes_id": null
+        }
+      ],
+      "tombstones": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "value",
+          "slot_key": "user|pref.meeting_time"
+        },
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "slot",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ]
+    },
+    {
+      "after_turn": 5,
+      "deleted": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ],
+      "edges": [],
+      "memories": [
+        {
+          "canonical_text": null,
+          "confidence": 0.9,
+          "contests_id": null,
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "display": null,
+          "expires_at": null,
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "importance": 0.8,
+          "memory_type": "preference",
+          "observed_at": "2026-10-07T18:06:59.092Z",
+          "slot_key": "user|pref.meeting_time",
+          "status": "deleted",
+          "status_history": [
+            {
+              "status": "active",
+              "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+              "ts": "2026-10-07T18:06:59.135Z",
+              "turn_index": 1
+            },
+            {
+              "status": "deleted",
+              "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+              "ts": "2026-10-07T18:07:00.762Z",
+              "turn_index": 2
+            }
+          ],
+          "superseded_by_id": null,
+          "supersedes_id": null
+        }
+      ],
+      "tombstones": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "value",
+          "slot_key": "user|pref.meeting_time"
+        },
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "slot",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ]
+    },
+    {
+      "after_turn": 6,
+      "deleted": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ],
+      "edges": [],
+      "memories": [
+        {
+          "canonical_text": null,
+          "confidence": 0.9,
+          "contests_id": null,
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "display": null,
+          "expires_at": null,
+          "id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "importance": 0.8,
+          "memory_type": "preference",
+          "observed_at": "2026-10-07T18:06:59.092Z",
+          "slot_key": "user|pref.meeting_time",
+          "status": "deleted",
+          "status_history": [
+            {
+              "status": "active",
+              "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+              "ts": "2026-10-07T18:06:59.135Z",
+              "turn_index": 1
+            },
+            {
+              "status": "deleted",
+              "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+              "ts": "2026-10-07T18:07:00.762Z",
+              "turn_index": 2
+            }
+          ],
+          "superseded_by_id": null,
+          "supersedes_id": null
+        }
+      ],
+      "tombstones": [
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "value",
+          "slot_key": "user|pref.meeting_time"
+        },
+        {
+          "deleted_at": "2026-10-07T18:07:00.760Z",
+          "reason": "user_forget",
+          "scope": "slot",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "extractor": "rules-0.1",
+    "flags": {
+      "OPENPOKE_INGRESS_SCRUB": true,
+      "OPENPOKE_LTM_DEBUG": true,
+      "OPENPOKE_LTM_DEBUG_EVENTS": true,
+      "OPENPOKE_LTM_ENABLED": true,
+      "OPENPOKE_LTM_EXTRACTOR": "rules",
+      "OPENPOKE_LTM_TEST_HOOKS": true
+    },
+    "generated_at": "2026-10-07T18:06:59Z",
+    "git_commit": "44387cf4bae61ec4663ad83f8abd8e342375586b",
+    "git_dirty": true,
+    "headline_probe": "new_conversation",
+    "llm": "mock",
+    "policy": "policy-0.1",
+    "python": "3.13.5",
+    "run_id": "run_01M4BRPE9YRMN37YHD6AGSN3AT",
+    "sqlite": "3.53.4"
+  },
+  "mode": "ltm",
+  "model_context": {
+    "contains_preference": false,
+    "probe": "new_conversation",
+    "sections": {
+      "active_agents": {
+        "contains_preference": false,
+        "present": true
+      },
+      "conversation_history": {
+        "contains_preference": false,
+        "present": true
+      },
+      "new_user_message": {
+        "contains_preference": false,
+        "present": true
+      }
+    },
+    "turn_index": 6
+  },
+  "pipeline": [
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "chars": 30,
+        "epoch": 0,
+        "kind": "setup",
+        "observed_at": "2026-10-07T18:06:59.092Z",
+        "source_kind": "user_message",
+        "turn_id": "turn_2026-10-07T18:06:59.092Z_6efb"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "conversation",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 0,
+      "source": "event",
+      "stage": "ingest",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.095Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": "CLEAN",
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "ingress_scrub",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 1,
+      "source": "event",
+      "stage": "ingress.scrub",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.096Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "privacy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 2,
+      "source": "event",
+      "stage": "privacy.scrub",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.097Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "hard_filters": {
+          "allowed_use": "interaction_context",
+          "not_expired": true,
+          "sensitivity": [
+            "low",
+            "medium"
+          ],
+          "statuses": [
+            "active",
+            "contested"
+          ],
+          "user_scope": "local-user"
+        },
+        "n_entities": 0,
+        "n_terms": 3,
+        "terms": [
+          "prefer",
+          "meet",
+          "10:00"
+        ]
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 3,
+      "source": "event",
+      "stage": "retrieve.query",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.100Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "constraint": 0,
+        "fts": 0,
+        "slot": 0,
+        "total": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 4,
+      "source": "event",
+      "stage": "retrieve.candidates",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.102Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "selected": [],
+        "tokens": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": "",
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 5,
+      "source": "event",
+      "stage": "retrieve.select",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.103Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": "OK",
+      "detail": {
+        "duplicate": false,
+        "extractor_version": "rules-0.1",
+        "latency_ms": 0.43,
+        "n_candidates": 1
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "extract",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 6,
+      "source": "event",
+      "stage": "extract",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.127Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "CANDIDATE",
+      "detail": {
+        "clause_index": 0,
+        "label": "meeting time preference"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "extract",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 7,
+      "source": "event",
+      "stage": "extract.clause",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.128Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "STORE",
+      "detail": {
+        "categories": [],
+        "detectors": [],
+        "label": "meeting time preference",
+        "sensitivity": "LOW"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "privacy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 8,
+      "source": "event",
+      "stage": "privacy.classify",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.130Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "STORE",
+      "detail": {
+        "confidence": 0.9,
+        "importance": 0.8,
+        "importance_breakdown": {
+          "durability:long_term": 0.1,
+          "habitual": 0.05,
+          "type:preference": 0.65
+        },
+        "label": "meeting time preference",
+        "slot_key": "user|pref.meeting_time"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "policy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": {
+        "confidence": 0.9,
+        "importance": 0.8
+      },
+      "seq": 9,
+      "source": "event",
+      "stage": "policy",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.132Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "INSERT",
+      "detail": {
+        "duplicate": false,
+        "label": "meeting time preference",
+        "new_id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+        "slot_key": "user|pref.meeting_time"
+      },
+      "input_safe": null,
+      "memory_id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+      "node": "store",
+      "output_safe": null,
+      "reason": "NEW_SLOT",
+      "reason_codes": [
+        "NEW_SLOT"
+      ],
+      "refs": {},
+      "scores": {
+        "confidence": 0.9,
+        "importance": 0.8
+      },
+      "seq": 10,
+      "source": "event",
+      "stage": "consolidate",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:06:59.135Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": "OK",
+      "detail": {
+        "duplicate": true,
+        "extractor_version": "rules-0.1",
+        "latency_ms": 0.8,
+        "n_candidates": 1
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "extract",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 11,
+      "source": "event",
+      "stage": "extract",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:07:03.142Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "CANDIDATE",
+      "detail": {
+        "clause_index": 0,
+        "label": "meeting time preference"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "extract",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 12,
+      "source": "event",
+      "stage": "extract.clause",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:07:03.146Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "STORE",
+      "detail": {
+        "categories": [],
+        "detectors": [],
+        "label": "meeting time preference",
+        "sensitivity": "LOW"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "privacy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 13,
+      "source": "event",
+      "stage": "privacy.classify",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:07:03.149Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "STORE",
+      "detail": {
+        "confidence": 0.9,
+        "importance": 0.8,
+        "importance_breakdown": {
+          "durability:long_term": 0.1,
+          "habitual": 0.05,
+          "type:preference": 0.65
+        },
+        "label": "meeting time preference",
+        "slot_key": "user|pref.meeting_time"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "policy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": {
+        "confidence": 0.9,
+        "importance": 0.8
+      },
+      "seq": 14,
+      "source": "event",
+      "stage": "policy",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:07:03.153Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": "cand_1",
+      "decision": "TOMBSTONED",
+      "detail": {
+        "duplicate": true,
+        "label": "meeting time preference",
+        "slot_key": "user|pref.meeting_time"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "fence_drop",
+      "output_safe": null,
+      "reason": "job observed_at 2026-10-07T18:06:59.092Z ≤ tombstone 2026-10-07T18:07:00.760Z",
+      "reason_codes": [
+        "TOMBSTONED"
+      ],
+      "refs": {
+        "job_observed_at": "2026-10-07T18:06:59.092Z",
+        "tombstone_at": "2026-10-07T18:07:00.760Z"
+      },
+      "scores": null,
+      "seq": 15,
+      "source": "event",
+      "stage": "fence_drop",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "ts": "2026-10-07T18:07:03.163Z",
+      "turn_index": 1
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "chars": 29,
+        "epoch": 0,
+        "kind": "forget",
+        "observed_at": "2026-10-07T18:07:00.751Z",
+        "source_kind": "user_message",
+        "turn_id": "turn_2026-10-07T18:07:00.751Z_dfc8"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "conversation",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 0,
+      "source": "event",
+      "stage": "ingest",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.753Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": "CLEAN",
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "ingress_scrub",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 1,
+      "source": "event",
+      "stage": "ingress.scrub",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.754Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "privacy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 2,
+      "source": "event",
+      "stage": "privacy.scrub",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.756Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": "TARGETED",
+      "detail": {
+        "kind": "targeted"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "delete",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 3,
+      "source": "event",
+      "stage": "forget.detect",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.757Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": "DELETE",
+      "detail": {
+        "count": 1,
+        "label": "forget meeting time preference",
+        "memory_ids": [
+          "mem_01M4BRR5HYNX2VYYQP6EEF0RZD"
+        ],
+        "slot_key": "user|pref.meeting_time",
+        "tombstone_at": "2026-10-07T18:07:00.760Z",
+        "tombstone_only": false,
+        "top_rel": [
+          0.9
+        ]
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "delete",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 4,
+      "source": "event",
+      "stage": "forget.apply",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.762Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "hard_filters": {
+          "allowed_use": "interaction_context",
+          "not_expired": true,
+          "sensitivity": [
+            "low",
+            "medium"
+          ],
+          "statuses": [
+            "active",
+            "contested"
+          ],
+          "user_scope": "local-user"
+        },
+        "n_entities": 0,
+        "n_terms": 3,
+        "terms": [
+          "forget",
+          "meet",
+          "prefer"
+        ]
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 5,
+      "source": "event",
+      "stage": "retrieve.query",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.764Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "constraint": 0,
+        "fts": 0,
+        "slot": 0,
+        "total": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 6,
+      "source": "event",
+      "stage": "retrieve.candidates",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.766Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "selected": [],
+        "tokens": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": "",
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 7,
+      "source": "event",
+      "stage": "retrieve.select",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "ts": "2026-10-07T18:07:00.767Z",
+      "turn_index": 2
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "chars": 26,
+        "epoch": 0,
+        "kind": "probe",
+        "observed_at": "2026-10-07T18:07:01.897Z",
+        "source_kind": "user_message",
+        "turn_id": "turn_2026-10-07T18:07:01.897Z_e2a2"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "conversation",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 0,
+      "source": "event",
+      "stage": "ingest",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.898Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": "CLEAN",
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "ingress_scrub",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 1,
+      "source": "event",
+      "stage": "ingress.scrub",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.900Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "privacy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 2,
+      "source": "event",
+      "stage": "privacy.scrub",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.901Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "hard_filters": {
+          "allowed_use": "interaction_context",
+          "not_expired": true,
+          "sensitivity": [
+            "low",
+            "medium"
+          ],
+          "statuses": [
+            "active",
+            "contested"
+          ],
+          "user_scope": "local-user"
+        },
+        "n_entities": 0,
+        "n_terms": 2,
+        "terms": [
+          "prefer",
+          "meet"
+        ]
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 3,
+      "source": "event",
+      "stage": "retrieve.query",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.902Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "constraint": 0,
+        "fts": 0,
+        "slot": 0,
+        "total": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 4,
+      "source": "event",
+      "stage": "retrieve.candidates",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.905Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "selected": [],
+        "tokens": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": "",
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 5,
+      "source": "event",
+      "stage": "retrieve.select",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.906Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": "OK",
+      "detail": {
+        "duplicate": false,
+        "extractor_version": "rules-0.1",
+        "latency_ms": 0.46,
+        "n_candidates": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "extract",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 6,
+      "source": "event",
+      "stage": "extract",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.919Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": "NO_CANDIDATE",
+      "detail": {
+        "clause_index": 0
+      },
+      "input_safe": "When do I prefer meetings?",
+      "memory_id": null,
+      "node": "ignore",
+      "output_safe": null,
+      "reason": "QUESTION",
+      "reason_codes": [
+        "QUESTION"
+      ],
+      "refs": {},
+      "scores": null,
+      "seq": 7,
+      "source": "event",
+      "stage": "extract.clause",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "ts": "2026-10-07T18:07:01.922Z",
+      "turn_index": 3
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "chars": 26,
+        "epoch": 1,
+        "kind": "probe",
+        "observed_at": "2026-10-07T18:07:04.560Z",
+        "source_kind": "user_message",
+        "turn_id": "turn_2026-10-07T18:07:04.560Z_889c"
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "conversation",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 0,
+      "source": "event",
+      "stage": "ingest",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.564Z",
+      "turn_index": 6
+    },
+    {
+      "candidate_id": null,
+      "decision": "CLEAN",
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "ingress_scrub",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 1,
+      "source": "event",
+      "stage": "ingress.scrub",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.567Z",
+      "turn_index": 6
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "detectors": []
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "privacy",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 2,
+      "source": "event",
+      "stage": "privacy.scrub",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.571Z",
+      "turn_index": 6
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "hard_filters": {
+          "allowed_use": "interaction_context",
+          "not_expired": true,
+          "sensitivity": [
+            "low",
+            "medium"
+          ],
+          "statuses": [
+            "active",
+            "contested"
+          ],
+          "user_scope": "local-user"
+        },
+        "n_entities": 0,
+        "n_terms": 2,
+        "terms": [
+          "prefer",
+          "meet"
+        ]
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 3,
+      "source": "event",
+      "stage": "retrieve.query",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.572Z",
+      "turn_index": 6
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "constraint": 0,
+        "fts": 0,
+        "slot": 0,
+        "total": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 4,
+      "source": "event",
+      "stage": "retrieve.candidates",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.575Z",
+      "turn_index": 6
+    },
+    {
+      "candidate_id": null,
+      "decision": null,
+      "detail": {
+        "selected": [],
+        "tokens": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "retrieve",
+      "output_safe": "",
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 5,
+      "source": "event",
+      "stage": "retrieve.select",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.576Z",
+      "turn_index": 6
+    },
+    {
+      "candidate_id": null,
+      "decision": "OK",
+      "detail": {
+        "duplicate": false,
+        "extractor_version": "rules-0.1",
+        "latency_ms": 0.05,
+        "n_candidates": 0
+      },
+      "input_safe": null,
+      "memory_id": null,
+      "node": "extract",
+      "output_safe": null,
+      "reason": null,
+      "reason_codes": [],
+      "refs": {},
+      "scores": null,
+      "seq": 6,
+      "source": "event",
+      "stage": "extract",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.588Z",
+      "turn_index": 6
+    },
+    {
+      "candidate_id": null,
+      "decision": "NO_CANDIDATE",
+      "detail": {
+        "clause_index": 0
+      },
+      "input_safe": "When do I prefer meetings?",
+      "memory_id": null,
+      "node": "ignore",
+      "output_safe": null,
+      "reason": "QUESTION",
+      "reason_codes": [
+        "QUESTION"
+      ],
+      "refs": {},
+      "scores": null,
+      "seq": 7,
+      "source": "event",
+      "stage": "extract.clause",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "ts": "2026-10-07T18:07:04.590Z",
+      "turn_index": 6
+    }
+  ],
+  "probes": [
+    {
+      "label": "same_session",
+      "model_context": {
+        "contains_preference": true,
+        "sections": {
+          "active_agents": {
+            "contains_preference": false,
+            "present": true
+          },
+          "conversation_history": {
+            "contains_preference": true,
+            "present": true
+          },
+          "new_user_message": {
+            "contains_preference": false,
+            "present": true
+          }
+        }
+      },
+      "probe": "same_session",
+      "turn_index": 3
+    },
+    {
+      "label": "new_conversation",
+      "model_context": {
+        "contains_preference": false,
+        "sections": {
+          "active_agents": {
+            "contains_preference": false,
+            "present": true
+          },
+          "conversation_history": {
+            "contains_preference": false,
+            "present": true
+          },
+          "new_user_message": {
+            "contains_preference": false,
+            "present": true
+          }
+        }
+      },
+      "probe": "new_conversation",
+      "turn_index": 6
+    }
+  ],
+  "retrieval": [
+    {
+      "candidates": [],
+      "egress": null,
+      "excluded_by_filters": [],
+      "hard_filters": {
+        "allowed_use": "interaction_context",
+        "not_expired": true,
+        "sensitivity": [
+          "low",
+          "medium"
+        ],
+        "statuses": [
+          "active",
+          "contested"
+        ],
+        "user_scope": "local-user"
+      },
+      "label": null,
+      "ltm_block": "",
+      "ltm_block_tokens": 0,
+      "probe": null,
+      "query": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "n_terms": 3,
+        "terms": [
+          "prefer",
+          "meet",
+          "10:00"
+        ]
+      },
+      "selected": [],
+      "turn_index": 1
+    },
+    {
+      "candidates": [],
+      "egress": null,
+      "excluded_by_filters": [],
+      "hard_filters": {
+        "allowed_use": "interaction_context",
+        "not_expired": true,
+        "sensitivity": [
+          "low",
+          "medium"
+        ],
+        "statuses": [
+          "active",
+          "contested"
+        ],
+        "user_scope": "local-user"
+      },
+      "label": null,
+      "ltm_block": "",
+      "ltm_block_tokens": 0,
+      "probe": null,
+      "query": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "n_terms": 3,
+        "terms": [
+          "forget",
+          "meet",
+          "prefer"
+        ]
+      },
+      "selected": [],
+      "turn_index": 2
+    },
+    {
+      "candidates": [],
+      "egress": null,
+      "excluded_by_filters": [],
+      "hard_filters": {
+        "allowed_use": "interaction_context",
+        "not_expired": true,
+        "sensitivity": [
+          "low",
+          "medium"
+        ],
+        "statuses": [
+          "active",
+          "contested"
+        ],
+        "user_scope": "local-user"
+      },
+      "label": null,
+      "ltm_block": "",
+      "ltm_block_tokens": 0,
+      "probe": "same_session",
+      "query": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "n_terms": 2,
+        "terms": [
+          "prefer",
+          "meet"
+        ]
+      },
+      "selected": [],
+      "turn_index": 3
+    },
+    {
+      "candidates": [],
+      "egress": null,
+      "excluded_by_filters": [],
+      "hard_filters": {
+        "allowed_use": "interaction_context",
+        "not_expired": true,
+        "sensitivity": [
+          "low",
+          "medium"
+        ],
+        "statuses": [
+          "active",
+          "contested"
+        ],
+        "user_scope": "local-user"
+      },
+      "label": null,
+      "ltm_block": "",
+      "ltm_block_tokens": 0,
+      "probe": "new_conversation",
+      "query": {
+        "entities": [],
+        "families": [
+          "pref.meeting_time"
+        ],
+        "n_terms": 2,
+        "terms": [
+          "prefer",
+          "meet"
+        ]
+      },
+      "selected": [],
+      "turn_index": 6
+    }
+  ],
+  "retrieved": [],
+  "scenario": "forget",
+  "schema": "openpoke.ltm.demo_trace.v1",
+  "turns": [
+    {
+      "hook": {
+        "duplicate_next_job_with_delay_ms": 4000
+      },
+      "kind": "hook",
+      "outcomes": [],
+      "path": [],
+      "session": "s1",
+      "text_safe": null,
+      "turn_index": 0
+    },
+    {
+      "kind": "setup",
+      "outcomes": [
+        {
+          "candidate_id": "cand_1",
+          "clause_index": 0,
+          "decision": "STORE",
+          "duplicate": false,
+          "importance": 0.8,
+          "label": "meeting time preference",
+          "memory_id": "mem_01M4BRR5HYNX2VYYQP6EEF0RZD",
+          "reason": "NEW_SLOT",
+          "result": "INSERT"
+        },
+        {
+          "candidate_id": "cand_1",
+          "clause_index": 0,
+          "decision": "STORE",
+          "duplicate": true,
+          "importance": 0.8,
+          "label": "meeting time preference",
+          "memory_id": null,
+          "reason": "TOMBSTONED",
+          "refs": {
+            "job_observed_at": "2026-10-07T18:06:59.092Z",
+            "tombstone_at": "2026-10-07T18:07:00.760Z"
+          },
+          "result": "FENCE_DROP"
+        }
+      ],
+      "path": [
+        "conversation",
+        "ingress_scrub",
+        "privacy",
+        "retrieve",
+        "extract",
+        "policy",
+        "consolidate",
+        "store",
+        "fence_drop"
+      ],
+      "session": "s1",
+      "text_safe": "I prefer meetings after 10 AM.",
+      "trace_id": "trc_01M4BRR5GNEFZQ6F9EPHH642GW",
+      "turn_index": 1
+    },
+    {
+      "kind": "setup",
+      "outcomes": [
+        {
+          "decision": "DELETE",
+          "label": "forget meeting time preference",
+          "memory_ids": [
+            "mem_01M4BRR5HYNX2VYYQP6EEF0RZD"
+          ],
+          "reason": null,
+          "result": "DELETE",
+          "slot_key": "user|pref.meeting_time"
+        }
+      ],
+      "path": [
+        "conversation",
+        "ingress_scrub",
+        "privacy",
+        "delete",
+        "retrieve"
+      ],
+      "session": "s1",
+      "text_safe": "Forget my meeting preference.",
+      "trace_id": "trc_01M4BRR74GD3GF9D3P35276CBV",
+      "turn_index": 2
+    },
+    {
+      "kind": "probe",
+      "label": "same_session",
+      "outcomes": [
+        {
+          "candidate_id": null,
+          "clause_index": 0,
+          "decision": "IGNORE",
+          "label": "When do I prefer meetings",
+          "memory_id": null,
+          "reason": "QUESTION",
+          "result": "NO_CANDIDATE"
+        }
+      ],
+      "path": [
+        "conversation",
+        "ingress_scrub",
+        "privacy",
+        "retrieve",
+        "extract",
+        "ignore",
+        "agent"
+      ],
+      "probe": "same_session",
+      "session": "s1",
+      "text_safe": "When do I prefer meetings?",
+      "trace_id": "trc_01M4BRR889833S3AYPW82G4MBR",
+      "turn_index": 3
+    },
+    {
+      "kind": "wait_duplicate",
+      "outcomes": [],
+      "path": [],
+      "session": "s1",
+      "text_safe": null,
+      "turn_index": 4
+    },
+    {
+      "kind": "new_conversation",
+      "outcomes": [],
+      "path": [],
+      "session": "s2",
+      "text_safe": null,
+      "turn_index": 5
+    },
+    {
+      "kind": "probe",
+      "label": "new_conversation",
+      "outcomes": [
+        {
+          "candidate_id": null,
+          "clause_index": 0,
+          "decision": "IGNORE",
+          "label": "When do I prefer meetings",
+          "memory_id": null,
+          "reason": "QUESTION",
+          "result": "NO_CANDIDATE"
+        }
+      ],
+      "path": [
+        "conversation",
+        "ingress_scrub",
+        "privacy",
+        "retrieve",
+        "extract",
+        "ignore",
+        "agent"
+      ],
+      "probe": "new_conversation",
+      "session": "s2",
+      "text_safe": "When do I prefer meetings?",
+      "trace_id": "trc_01M4BRRAVJEE1WPBQQ4Y1CK4PT",
+      "turn_index": 6
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "bonus_files": [],
+  "extractor": "llm",
+  "failed": [],
+  "files": [
+    "privacy.ltm.json"
+  ],
+  "gate_passed": true,
+  "generated_at": "2026-10-07T18:05:43Z",
+  "git_commit": "44387cf4bae61ec4663ad83f8abd8e342375586b",
+  "git_dirty": true,
+  "run_id": "run_01M4BRNK3JA1HKTMXBWGP6H3R8",
+  "schema": "openpoke.ltm.demo_trace.index.v1"
+}
